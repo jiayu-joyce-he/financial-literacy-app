@@ -45,10 +45,13 @@ const SideBar = ({
 
   const [currentStep, setCurrentStep] = useState(initialSectionProgress[0]);
   const [totalSteps, setTotalSteps] = useState(initialSectionProgress[1]);
-  const [tabKey, setTabKey] = useState("learning_goals");
+  const [tabKey, setTabKey] = useState("#learning_goals");
 
+  console.log("currentStep", currentStep, "total step", totalSteps);
   const progressShown =
-    currentStep / totalSteps < 1 ? (currentStep / totalSteps) * 100 : 100;
+    (currentStep + 1) / totalSteps <= 1
+      ? ((currentStep + 1) / totalSteps) * 100
+      : 100;
 
   const SectionProgress = () => {
     return (
@@ -73,17 +76,13 @@ const SideBar = ({
   }, [currentStep]);
 
   const handleSelect = key => {
-    console.log("selecting key!!!!", key);
+    console.log("handling select????", key);
     setTabKey(key);
   };
 
-  console.log("activeKey", tabKey);
   return (
     <StyledSideBar>
-      <Tab.Container
-        defaultActiveKey="#learning_goals"
-        activeKey={`#${tabKey}`}
-      >
+      <Tab.Container defaultActiveKey="#learning_goals" activeKey={tabKey}>
         <Row>
           <Col sm={3} id="leftbar-wrapper">
             <div class="sidebar-heading">{unitTitle} </div>
@@ -133,9 +132,11 @@ const SideBar = ({
                   //   }`}
                   onClick={() =>
                     handleSelect(
-                      sectionSequence[
-                        sectionSequence.indexOf(currentSection) + 1
-                      ]
+                      `#${
+                        sectionSequence[
+                          sectionSequence.indexOf(currentSection) + 1
+                        ]
+                      }`
                     )
                   }
                   href={`#${
