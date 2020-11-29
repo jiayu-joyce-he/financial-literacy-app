@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { StyledNextSection } from "./SharedStyledComponents";
 
-const LoadingButton = ({ stepNum }) => {
+const LoadingButton = ({ setCurrentStep, currentStep, totalSteps }) => {
   const [isLoading, setLoading] = useState(false);
 
   const simulateNetworkRequest = () => {
@@ -19,6 +19,7 @@ const LoadingButton = ({ stepNum }) => {
 
   const handleClick = () => {
     setLoading(true);
+    totalSteps > currentStep + 1 && setCurrentStep(currentStep + 1);
   };
 
   return (

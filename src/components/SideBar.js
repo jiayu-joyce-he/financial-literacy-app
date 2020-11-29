@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Tab, ListGroup, Row, Col, ProgressBar, Alert } from "react-bootstrap";
+import {
+  Nav,
+  Tab,
+  ListGroup,
+  Row,
+  Col,
+  ProgressBar,
+  Alert,
+} from "react-bootstrap";
 import {
   StyledSideBar,
   StyledUnitBannerWrapper,
@@ -17,21 +25,31 @@ const SideBar = ({
   //   setSectionNum,
   //   totalSectionNum,
 }) => {
-  console.log("progress", progress);
+  const sectionSequence = content.map(e => e.sectionId);
 
-  const currentSection = (typeof window !== "undefined"
-    ? window.location.href
-    : ""
-  ).split("#")[1];
+  const currentSection = window.location.href.split("#")[1]
+    ? window.location.href.split("#")[1]
+    : "learning_goals";
 
-  console.log("currentSection", currentSection);
-  const currentSectionProgress =
+  useEffect(() => {
+    // Set steps to current section
+    if (currentSection != "learning_goals") {
+      console.log("new currentSection", currentSection);
+      setCurrentStep(progress[currentSection][0]);
+      setTotalSteps(progress[currentSection][1]);
+    }
+  }, [currentSection]);
+
+  const initialSectionProgress =
     currentSection == "learning_goals" ? [0, 1] : progress[currentSection];
-  console.log("currentSectionProgress", currentSectionProgress);
 
-  let sectionNum = 1;
-  let totalSectionNum = 3;
-  const progressShown = (1 / 3) * 100;
+  const [currentStep, setCurrentStep] = useState(initialSectionProgress[0]);
+  const [totalSteps, setTotalSteps] = useState(initialSectionProgress[1]);
+  const [tabKey, setTabKey] = useState("learning_goals");
+
+  const progressShown =
+    currentStep / totalSteps < 1 ? (currentStep / totalSteps) * 100 : 100;
+
   const SectionProgress = () => {
     return (
       <StyledUnitBannerWrapper>
@@ -45,18 +63,44 @@ const SideBar = ({
     );
   };
 
+  useEffect(() => {
+    // Update progress every time we click the continue button
+    if (currentStep) {
+      const currentProgress = new Object();
+      currentProgress[currentSection] = [currentStep, totalSteps];
+      setProgress({ ...progress, currentProgress });
+    }
+  }, [currentStep]);
+
+  const handleSelect = key => {
+    console.log("selecting key!!!!", key);
+    setTabKey(key);
+  };
+
+  console.log("activeKey", tabKey);
   return (
     <StyledSideBar>
-      <Tab.Container defaultActiveKey="#learning_goals">
+      <Tab.Container
+        defaultActiveKey="#learning_goals"
+        activeKey={`#${tabKey}`}
+      >
         <Row>
           <Col sm={3} id="leftbar-wrapper">
             <div class="sidebar-heading">{unitTitle} </div>
             <ListGroup>
-              <ListGroup.Item action href="#learning_goals">
+              <ListGroup.Item
+                onSelect={handleSelect}
+                action
+                href="#learning_goals"
+              >
                 Learning Goals
               </ListGroup.Item>
               {content.map(e => (
-                <ListGroup.Item action href={`#${e.sectionId}`}>
+                <ListGroup.Item
+                  action
+                  href={`#${e.sectionId}`}
+                  onSelect={handleSelect}
+                >
                   {e.sectionName}
                 </ListGroup.Item>
               ))}
@@ -74,15 +118,33 @@ const SideBar = ({
                 </Tab.Pane>
               ))}
             </Tab.Content>
-            {sectionNum !== totalSectionNum ? (
+            {currentStep + 1 < totalSteps ? (
               <LoadingButton
-              // setSectionNum={setSectionNum}
-              // sectionNum={sectionNum}
-              // stepNum setStepNum totalSteps
+                setCurrentStep={setCurrentStep}
+                currentStep={currentStep}
+                totalSteps={totalSteps}
               />
             ) : (
               <Alert variant="success">
-                Creat job! Let's move on to the next section!
+                Creat job! Let's move on to{" "}
+                <Alert.Link
+                  //   eventKey={`#${
+                  //     sectionSequence[sectionSequence.indexOf(currentSection) + 1]
+                  //   }`}
+                  onClick={() =>
+                    handleSelect(
+                      sectionSequence[
+                        sectionSequence.indexOf(currentSection) + 1
+                      ]
+                    )
+                  }
+                  href={`#${
+                    sectionSequence[sectionSequence.indexOf(currentSection) + 1]
+                  }`}
+                >
+                  the next section
+                </Alert.Link>
+                !
               </Alert>
             )}
           </Col>
