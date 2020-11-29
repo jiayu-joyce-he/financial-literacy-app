@@ -1,51 +1,44 @@
 import React from "react";
-import { Col, Row, Card, ListGroup } from "react-bootstrap";
+import styled from "styled-components";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
+import { Button } from "react-bootstrap";
+import { Link } from "gatsby";
 
-const AboutPage = () => (
-  <Layout>
-    <SEO title="About" />
-    <Row>
-      <Col>
-        <h1>About</h1>
-        <p>This is a basic gatsby starter</p>
-      </Col>
-    </Row>
-    <Row>
-      <Col md="6">
-        <Card>
-          <Card.Body>
-            <Card.Title>Features</Card.Title>
-            <Card.Text>
-              <ListGroup>
-                <ListGroup.Item>
-                  Uses react-bootstrap and little else
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  Optional theme support with bootswatch
-                </ListGroup.Item>
-                <ListGroup.Item>SCSS styling</ListGroup.Item>
-              </ListGroup>
-            </Card.Text>
-          </Card.Body>
-        </Card>
-      </Col>
-      <Col md="6">
-        <Card>
-          <Card.Body>
-            <Card.Title>More Information</Card.Title>
-            <Card.Text>
-              <ListGroup>
-                <ListGroup.Item action href="https://mik3y.github.io/gatsby-starter-basic-bootstrap/">Visit the demo page</ListGroup.Item>
-                <ListGroup.Item action href="https://github.com/mik3y/gatsby-starter-basic-bootstrap">View/edit on github</ListGroup.Item>
-              </ListGroup>
-            </Card.Text>
-          </Card.Body>
-        </Card>
-      </Col>
-    </Row>
-  </Layout>
-);
+const AboutPage = () => {
+  const StyledInnerWrapper = styled.div`
+    width: 100%;
+    margin-top: 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  `;
+  return (
+    <Layout>
+      <SEO title="About" />
+      <StyledInnerWrapper>
+        <h1>Pre-quiz</h1>
+        <p>
+          Before we start, can you help us know you better through this quiz?
+          Thanks!
+        </p>
+        <Button variant="outline-success" as={Link} to="/course-outline">
+          Have you completed the quiz? Yes
+        </Button>
+
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLScXepiRUSBMW-QtzzezhE_lrYi7pJAJLO2wCvJG7rKPkxf09w/viewform?embedded=true"
+          width="700"
+          height="520"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0"
+        >
+          Loading…
+        </iframe>
+      </StyledInnerWrapper>
+    </Layout>
+  );
+};
 
 export default AboutPage;

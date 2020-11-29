@@ -1,10 +1,19 @@
+const path = require(`path`);
+
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Basic Bootstrap Starter`,
-    description: `A simple Gatsby starter leveraging react-bootstrap and little else.`,
-    author: `@mik3y`,
+    title: `The Financial Literacy Project`,
+    description: `A simple small learning module on financial literacy.`,
+    author: `Caitlin Lim & Joyce He`,
   },
   plugins: [
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: path.join(__dirname, `src`, `images`),
+      },
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,

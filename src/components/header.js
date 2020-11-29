@@ -13,15 +13,25 @@ const Header = ({ siteTitle }) => (
       <Nav className="mr-auto">
         <NavItem href="/about">
           <Nav.Link as={Link} activeClassName="active" to="/about">
-            About
+            Pre-quiz
+          </Nav.Link>
+        </NavItem>
+        <NavItem href="/course-outline">
+          <Nav.Link as={Link} activeClassName="active" to="/course-outline">
+            Course outline
+          </Nav.Link>
+        </NavItem>
+        <NavItem href="/unit1">
+          <Nav.Link as={Link} activeClassName="active" to="/unit1">
+            Unit 1
           </Nav.Link>
         </NavItem>
       </Nav>
-      <Nav className="ml-auto">
+      {/* <Nav className="ml-auto">
         <Button variant="success" onClick={() => alert("Sign Up")}>
           Sign Up
         </Button>
-      </Nav>
+      </Nav> */}
     </Navbar.Collapse>
   </Navbar>
 );
