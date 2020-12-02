@@ -1,29 +1,20 @@
 import React, { useState, useEffect } from "react";
-import {
-  Nav,
-  Tab,
-  ListGroup,
-  Row,
-  Col,
-  ProgressBar,
-  Alert,
-} from "react-bootstrap";
+import { Tab, ListGroup, Row, Col, ProgressBar, Alert } from "react-bootstrap";
 import {
   StyledSideBar,
   StyledUnitBannerWrapper,
-} from "../components/SharedStyledComponents";
+} from "./SharedStyledComponents";
 import LearningGoals from "./LearningGoals";
 import LoadingButton from "./LoadingButton";
+import SectionContent from "./SectionContent";
 
-const SideBar = ({
+const UnitContent = ({
+  unitId,
   unitTitle,
   learningGoals,
   content,
   progress,
   setProgress,
-  //   sectionNum,
-  //   setSectionNum,
-  //   totalSectionNum,
 }) => {
   const sectionSequence = content.map(e => e.sectionId);
 
@@ -34,7 +25,6 @@ const SideBar = ({
   useEffect(() => {
     // Set steps to current section
     if (currentSection != "learning_goals") {
-      console.log("new currentSection", currentSection);
       setCurrentStep(progress[currentSection][0]);
       setTotalSteps(progress[currentSection][1]);
     }
@@ -49,9 +39,7 @@ const SideBar = ({
 
   console.log("currentStep", currentStep, "total step", totalSteps);
   const progressShown =
-    (currentStep + 1) / totalSteps <= 1
-      ? ((currentStep + 1) / totalSteps) * 100
-      : 100;
+    currentStep / totalSteps <= 1 ? (currentStep / totalSteps) * 100 : 100;
 
   const SectionProgress = () => {
     return (
@@ -76,8 +64,52 @@ const SideBar = ({
   }, [currentStep]);
 
   const handleSelect = key => {
-    console.log("handling select????", key);
     setTabKey(key);
+  };
+
+  const NextButton = () => {
+    if (
+      sectionSequence[sectionSequence.length - 1] == currentSection &&
+      unitId < 4
+    ) {
+      return (
+        <Alert variant="success">
+          Creat job! Let's move on to{" "}
+          <Alert.Link to={`/unit${unitId + 1}`}>next unit</Alert.Link>!
+        </Alert>
+      );
+    } else if (currentStep != totalSteps) {
+      return (
+        <LoadingButton
+          setCurrentStep={setCurrentStep}
+          currentStep={currentStep}
+          totalSteps={totalSteps}
+          currentSection={currentSection}
+          sectionSequence={sectionSequence}
+        />
+      );
+    } else {
+      return (
+        <Alert variant="success">
+          Creat job! Let's move on to{" "}
+          <Alert.Link
+            onClick={() =>
+              handleSelect(
+                `#${
+                  sectionSequence[sectionSequence.indexOf(currentSection) + 1]
+                }`
+              )
+            }
+            href={`#${
+              sectionSequence[sectionSequence.indexOf(currentSection) + 1]
+            }`}
+          >
+            the next section
+          </Alert.Link>
+          !
+        </Alert>
+      );
+    }
   };
 
   return (
@@ -113,41 +145,18 @@ const SideBar = ({
               </Tab.Pane>
               {content.map(e => (
                 <Tab.Pane action eventKey={`#${e.sectionId}`}>
+                  {/* TODO: content here! */}
+                  <SectionContent
+                    content={content}
+                    currentSection={currentSection}
+                    SectionProgress={SectionProgress}
+                    currentStep={currentStep}
+                  />
                   {`content of ${e.sectionName}`}
                 </Tab.Pane>
               ))}
             </Tab.Content>
-            {currentStep + 1 < totalSteps ? (
-              <LoadingButton
-                setCurrentStep={setCurrentStep}
-                currentStep={currentStep}
-                totalSteps={totalSteps}
-              />
-            ) : (
-              <Alert variant="success">
-                Creat job! Let's move on to{" "}
-                <Alert.Link
-                  //   eventKey={`#${
-                  //     sectionSequence[sectionSequence.indexOf(currentSection) + 1]
-                  //   }`}
-                  onClick={() =>
-                    handleSelect(
-                      `#${
-                        sectionSequence[
-                          sectionSequence.indexOf(currentSection) + 1
-                        ]
-                      }`
-                    )
-                  }
-                  href={`#${
-                    sectionSequence[sectionSequence.indexOf(currentSection) + 1]
-                  }`}
-                >
-                  the next section
-                </Alert.Link>
-                !
-              </Alert>
-            )}
+            <NextButton />
           </Col>
         </Row>
       </Tab.Container>
@@ -155,4 +164,4 @@ const SideBar = ({
   );
 };
 
-export default SideBar;
+export default UnitContent;

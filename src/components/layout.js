@@ -112,7 +112,7 @@ const Layout = ({ children }) => {
             {/* <Container fluid>
               <Row>
                 <Col xs={3} id="sidebar-wrapper">
-                  <SideBar />
+                  <UnitContent />
                 </Col>
                 <Col xs={9} id="page-content-wrapper">
                   <UnitProgress />

@@ -59,7 +59,7 @@ const UnitButton = ({ button }) => {
   }
 
   return (
-    <StyledImageWrapper as={Link} to="/unit1">
+    <StyledImageWrapper as={Link} to={`/unit${button}`}>
       <Img fluid={image.fluid} />
     </StyledImageWrapper>
   );

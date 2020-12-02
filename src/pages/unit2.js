@@ -6,7 +6,7 @@ import Layout from "../components/layout";
 import UnitContent from "../components/UnitContent";
 import SEO from "../components/seo";
 
-const Unit1 = () => {
+const Unit2 = () => {
   // Set initial progress for all the sections in this unit
   const initialProgress = {
     section1: [0, 2],
@@ -62,8 +62,7 @@ const Unit1 = () => {
     <Layout>
       <SEO title="Home" />
       <UnitContent
-        unitId={1}
-        unitTitle="Unit 1: What is the time value of money?"
+        unitTitle="Unit 2"
         learningGoals={learningGoals}
         content={content}
         progress={progress}
@@ -76,4 +75,4 @@ const Unit1 = () => {
   );
 };
 
-export default Unit1;
+export default Unit2;

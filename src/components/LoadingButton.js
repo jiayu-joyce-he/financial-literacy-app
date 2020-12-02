@@ -18,8 +18,13 @@ const LoadingButton = ({ setCurrentStep, currentStep, totalSteps }) => {
   }, [isLoading]);
 
   const handleClick = () => {
+    // if (sectionSequence[sectionSequence.length - 1] != currentSection) {
     setLoading(true);
-    totalSteps > currentStep + 1 && setCurrentStep(currentStep + 1);
+    currentStep + 1 <= totalSteps && setCurrentStep(currentStep + 1);
+    // }
+    // else {
+    //   //TODO:redirect to next unit
+    // }
   };
 
   return (
