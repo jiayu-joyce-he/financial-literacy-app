@@ -2,45 +2,43 @@ import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import styled from "styled-components";
 import BackgroundImage from "gatsby-background-image";
+import Unit1Section1 from "../components/Unit1Section1";
+import Unit1Section2 from "../components/Unit1Section2";
 
-const SectionContent = ({ sectionContent }) => {
-  //   const data = useStaticQuery(
-  //     graphql`
-  //       query {
-  //         LearningGoalBackground: file(
-  //           relativePath: { eq: "learning-goals-background.png" }
-  //         ) {
-  //           childImageSharp {
-  //             fluid(quality: 90, maxWidth: 1920) {
-  //               ...GatsbyImageSharpFluid_withWebp
-  //             }
-  //           }
-  //         }
-  //       }
-  //     `
-  //   );
+const SectionContent = ({ content, currentSection, progress, setProgress }) => {
+  console.log("currentSection is:", currentSection);
 
-  //   const LearningGoalBackground =
-  //     data.LearningGoalBackground.childImageSharp.fluid;
+  const CurrentSectionContent = () => {
+    switch (currentSection.slice(-1)) {
+      case "1":
+        return <Unit1Section1 progress={progress} />;
 
-  const StyledInnerWrapper = styled.div`
-    min-height: 500px;
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: auto;
-    div {
-      margin: auto;
+      case "2":
+        return <Unit1Section2 progress={progress} />;
+      case "3":
+      // return(<Unit1Section3 progress={progress} />)
+      case "4":
+      // return(<Unit1Section4 progress={progress} />)
     }
-  `;
+    // if (currentSection.slice(-1) == 1) {
+    //   return <Unit1Section1 progress={progress} />;
+    // } else if (currentSection.slice(-1) == 2) {
+    //   return <Unit1Section2 progress={progress} />;
+    // } else {
+    //   return <Unit1Section1 progress={progress} />;
+    // }
+    // // else if (currentSection.slice(-1) == 3) {
+    // //   return <Unit1Section1 progress={progress} />;
+    // // } else if (currentSection.slice(-1) == 4) {
+    // //   return <Unit1Section1 progress={progress} />;
+    // // }
+  };
 
   return (
-    // <BackgroundImage fluid={LearningGoalBackground}>
-    <StyledInnerWrapper>
-      <p>content</p>
-    </StyledInnerWrapper>
-    // </BackgroundImage>
+    <>
+      {currentSection != "learning_goals" && <CurrentSectionContent />}
+      {/* <Unit1Section1 progress={progress} /> */}
+    </>
   );
 };
 

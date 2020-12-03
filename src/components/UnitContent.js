@@ -27,19 +27,16 @@ const UnitContent = ({
     if (currentSection != "learning_goals") {
       setCurrentStep(progress[currentSection][0]);
       setTotalSteps(progress[currentSection][1]);
+    } else if (progress["learning_goals"]) {
+      setCurrentStep(progress["learning_goals"][0]);
+      setTotalSteps(progress["learning_goals"][1]);
     }
   }, [currentSection]);
 
-  const initialSectionProgress =
-    currentSection == "learning_goals" ? [0, 1] : progress[currentSection];
-
-  const [currentStep, setCurrentStep] = useState(initialSectionProgress[0]);
-  const [totalSteps, setTotalSteps] = useState(initialSectionProgress[1]);
+  const [currentStep, setCurrentStep] = useState(0);
+  const [totalSteps, setTotalSteps] = useState(1);
+  const [progressShown, setProgressShown] = useState(0);
   const [tabKey, setTabKey] = useState("#learning_goals");
-
-  console.log("currentStep", currentStep, "total step", totalSteps);
-  const progressShown =
-    currentStep / totalSteps <= 1 ? (currentStep / totalSteps) * 100 : 100;
 
   const SectionProgress = () => {
     return (
@@ -57,10 +54,16 @@ const UnitContent = ({
   useEffect(() => {
     // Update progress every time we click the continue button
     if (currentStep) {
-      const currentProgress = new Object();
+      const currentProgress = { ...progress };
       currentProgress[currentSection] = [currentStep, totalSteps];
-      setProgress({ ...progress, currentProgress });
+      setProgress(currentProgress);
     }
+  }, [currentStep]);
+
+  useEffect(() => {
+    setProgressShown(
+      currentStep / totalSteps <= 1 ? (currentStep / totalSteps) * 100 : 100
+    );
   }, [currentStep]);
 
   const handleSelect = key => {
@@ -84,8 +87,6 @@ const UnitContent = ({
           setCurrentStep={setCurrentStep}
           currentStep={currentStep}
           totalSteps={totalSteps}
-          currentSection={currentSection}
-          sectionSequence={sectionSequence}
         />
       );
     } else {
@@ -149,10 +150,11 @@ const UnitContent = ({
                   <SectionContent
                     content={content}
                     currentSection={currentSection}
-                    SectionProgress={SectionProgress}
+                    progress={progress}
+                    setProgress={setProgress}
                     currentStep={currentStep}
                   />
-                  {`content of ${e.sectionName}`}
+                  {/* {`content of ${e.sectionName}`} */}
                 </Tab.Pane>
               ))}
             </Tab.Content>

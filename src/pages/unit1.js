@@ -10,7 +10,7 @@ const Unit1 = () => {
   // Set initial progress for all the sections in this unit
   const initialProgress = {
     section1: [0, 2],
-    section2: [0, 3],
+    section2: [0, 4],
     section3: [0, 3],
     section4: [0, 4],
     section5: [0, 1],
