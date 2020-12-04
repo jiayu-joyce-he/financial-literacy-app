@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { navigate } from "gatsby";
 import { Tab, ListGroup, Row, Col, ProgressBar, Alert } from "react-bootstrap";
 import {
   StyledSideBar,
@@ -82,7 +83,10 @@ const UnitContent = ({
       return (
         <Alert variant="success">
           Creat job! Let's move on to{" "}
-          <Alert.Link to={`/unit${unitId + 1}`}>next unit</Alert.Link>!
+          <Alert.Link onClick={() => navigate(`unit${unitId + 1}`)}>
+            next unit
+          </Alert.Link>
+          !
         </Alert>
       );
     } else if (currentStep != totalSteps) {
@@ -150,15 +154,13 @@ const UnitContent = ({
               </Tab.Pane>
               {content.map(e => (
                 <Tab.Pane action eventKey={`#${e.sectionId}`}>
-                  {/* TODO: content here! */}
                   <SectionContent
-                    content={content}
+                    currentUnit={unitId}
                     currentSection={currentSection}
                     progress={progress}
                     setProgress={setProgress}
                     currentStep={currentStep}
                   />
-                  {/* {`content of ${e.sectionName}`} */}
                 </Tab.Pane>
               ))}
             </Tab.Content>

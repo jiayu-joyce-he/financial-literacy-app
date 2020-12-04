@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from "gatsby";
 import styled from "styled-components";
 import BackgroundImage from "gatsby-background-image";
 import Img from "gatsby-image";
-import { Tab, Col, Row, ListGroup } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 
 const Unit1Section3 = ({ progress }) => {
   const data = useStaticQuery(

@@ -22,6 +22,8 @@ const Summaries = () => {
     ? window.location.href.split("/")[1]
     : "unit1";
 
+  console.log("currentUnit", currentUnit);
+
   const StyledInnerWrapper = styled.div`
     min-height: 500px;
     width: 60%;
@@ -35,7 +37,7 @@ const Summaries = () => {
   `;
 
   return (
-    <BackgroundImage fluid={data.unit1.childImageSharp.fluid}>
+    <BackgroundImage fluid={data[currentUnit].childImageSharp.fluid}>
       <StyledInnerWrapper>
         <div>
           {/* {learningGoals.map(e => (

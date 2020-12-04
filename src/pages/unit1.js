@@ -68,9 +68,6 @@ const Unit1 = () => {
         content={content}
         progress={progress}
         setProgress={setProgress}
-        // setSectionNum={setSectionNum}
-        // sectionNum={sectionNum}
-        // totalSectionNum={totalSectionNum}
       />
     </Layout>
   );

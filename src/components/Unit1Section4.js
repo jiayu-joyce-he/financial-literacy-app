@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { graphql, useStaticQuery, navigate } from "gatsby";
 import styled from "styled-components";
 import BackgroundImage from "gatsby-background-image";
-import Img from "gatsby-image";
-import { Button, Card, Row, Col } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 const Unit1Section4 = ({ progress, setProgress }) => {
   const data = useStaticQuery(
