@@ -85,6 +85,7 @@ export const StyledLink = styled(Link)`
 `;
 
 export const StyledNextSection = styled.div`
-  margin: auto;
+  margin: 2rem auto 1rem auto;
+  // margin-top: 2rem;
   text-align: center;
 `;

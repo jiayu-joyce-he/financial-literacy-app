@@ -90,15 +90,26 @@ const Unit1Section2 = ({ progress }) => {
     flex-direction: column;
     align-items: center;
 
+    .row {
+      margin-top: 3%;
+      margin-bottom: 3%;
+    }
+
     p {
       margin-top: 25%;
       margin-bottom: 5%;
     }
 
+    .alert {
+      width: 70%;
+      margin-top: 1rem;
+      min-width: 300px;
+    }
+
     #multiple-choice {
-      margin-top: 2%;
-      margin-left: 30%;
-      width: 30%;
+      min-width: 200px;
+      margin-left: 40%;
+      width: 50%;
       display: flex;
       flex-direction: column;
       text-align: start;
@@ -111,11 +122,11 @@ const Unit1Section2 = ({ progress }) => {
       }
 
       .choices {
-        margin-top: 20%;
         font-size: 1.25rem;
         color: #434343;
         border-color: #434343;
         margin-top: 1rem;
+        z-index: 1;
 
         :active {
           background-color: #ffe599;
@@ -241,7 +252,7 @@ const Unit1Section2 = ({ progress }) => {
             </p>
           </div>
           <Row>
-            <Col>
+            <Col xs={5}>
               <div id="multiple-choice">
                 {choices.map((e, index) => (
                   <Button
@@ -250,6 +261,7 @@ const Unit1Section2 = ({ progress }) => {
                     className="choices"
                     key={index}
                     onClick={() => {
+                      console.log("index", index);
                       setChoice(index);
                     }}
                   >
@@ -258,7 +270,7 @@ const Unit1Section2 = ({ progress }) => {
                 ))}
               </div>
             </Col>
-            <Col>
+            <Col xs={7}>
               {typeof choice === "number" && (
                 <Alert
                   variant={choices[choice].isCorrect ? "success" : "danger"}

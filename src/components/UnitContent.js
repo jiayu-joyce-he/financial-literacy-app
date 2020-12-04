@@ -51,19 +51,23 @@ const UnitContent = ({
     );
   };
 
+  let messagesEnd;
+  const scrollToBottom = () => {
+    console.log("scrolling");
+    messagesEnd.scrollIntoView({ behavior: "smooth" });
+  };
+
   useEffect(() => {
+    currentStep !== 0 && scrollToBottom();
+    setProgressShown(
+      currentStep / totalSteps <= 1 ? (currentStep / totalSteps) * 100 : 100
+    );
     // Update progress every time we click the continue button
     if (currentStep) {
       const currentProgress = { ...progress };
       currentProgress[currentSection] = [currentStep, totalSteps];
       setProgress(currentProgress);
     }
-  }, [currentStep]);
-
-  useEffect(() => {
-    setProgressShown(
-      currentStep / totalSteps <= 1 ? (currentStep / totalSteps) * 100 : 100
-    );
   }, [currentStep]);
 
   const handleSelect = key => {
@@ -118,7 +122,7 @@ const UnitContent = ({
       <Tab.Container defaultActiveKey="#learning_goals" activeKey={tabKey}>
         <Row>
           <Col sm={3} id="leftbar-wrapper">
-            <div class="sidebar-heading">{unitTitle} </div>
+            <div className="sidebar-heading">{unitTitle} </div>
             <ListGroup>
               <ListGroup.Item
                 onSelect={handleSelect}
@@ -159,6 +163,12 @@ const UnitContent = ({
               ))}
             </Tab.Content>
             <NextButton />
+            <div
+              style={{ float: "left", clear: "both" }}
+              ref={el => {
+                messagesEnd = el;
+              }}
+            ></div>
           </Col>
         </Row>
       </Tab.Container>

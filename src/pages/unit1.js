@@ -13,7 +13,7 @@ const Unit1 = () => {
     section2: [0, 4],
     section3: [0, 3],
     section4: [0, 4],
-    section5: [0, 1],
+    section5: [1, 1],
   };
 
   const [progress, setProgress] = useState(initialProgress);
