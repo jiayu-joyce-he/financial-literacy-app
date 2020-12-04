@@ -54,6 +54,11 @@ export const StyledUnitBannerWrapper = styled(StyledContentCenterWrapper)`
   p {
     font-size: 24px;
   }
+  .sticky {
+    position: sticky;
+    top: 0;
+    width: 100%;
+  }
 `;
 
 export const StyledSectionWrapper = styled(StyledContentCenterWrapper)`

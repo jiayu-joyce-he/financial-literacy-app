@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { graphql, useStaticQuery, navigate } from "gatsby";
 import styled from "styled-components";
 import BackgroundImage from "gatsby-background-image";
@@ -30,7 +30,7 @@ const Unit2Section1 = ({ progress, setProgress }) => {
             }
           }
         }
-        section2_3: file(relativePath: { eq: "unit1section2_3.png" }) {
+        section1_3: file(relativePath: { eq: "unit2section1_3.png" }) {
           childImageSharp {
             fluid(quality: 90, maxWidth: 1920) {
               ...GatsbyImageSharpFluid_withWebp
@@ -53,7 +53,7 @@ const Unit2Section1 = ({ progress, setProgress }) => {
     font-size: 1.25rem;
 
     #text {
-      margin-top: 7%;
+      margin-top: 10%;
     }
 
     .input-group {
@@ -62,12 +62,12 @@ const Unit2Section1 = ({ progress, setProgress }) => {
     }
 
     #text-small {
-      margin-top: 8.5rem;
+      margin-top: 6%;
       font-size: 1rem;
     }
 
     .bubble {
-      margin-top: 20%;
+      margin-top: 13%;
       position: relative;
       font-size: 1.25rem;
       line-height: 1rem;
@@ -94,7 +94,7 @@ const Unit2Section1 = ({ progress, setProgress }) => {
 
     #response {
       display: flex;
-      font-size: 1.25rem;
+      // font-size: 1.25rem;
       color: #434343;
       border-color: #434343;
       margin: 0.5rem;
@@ -131,8 +131,9 @@ const Unit2Section1 = ({ progress, setProgress }) => {
     }
 
     p {
-      margin-top: 25%;
-      margin-bottom: 5%;
+      width: 60%;
+      margin: 5% auto auto 15%;
+      margin-top: 5%;
     }
 
     .alert {
@@ -143,7 +144,7 @@ const Unit2Section1 = ({ progress, setProgress }) => {
 
     #multiple-choice {
       min-width: 200px;
-      margin-left: 40%;
+      margin-left: 30%;
       width: 50%;
       display: flex;
       flex-direction: column;
@@ -157,7 +158,7 @@ const Unit2Section1 = ({ progress, setProgress }) => {
       }
 
       .choices {
-        font-size: 1.25rem;
+        font-size: 1rem;
         color: #434343;
         border-color: #434343;
         margin-top: 1rem;
@@ -210,6 +211,11 @@ const Unit2Section1 = ({ progress, setProgress }) => {
   };
 
   const [step3Choice, setStep3Choice] = useState(0);
+  const [showExample, setShowExample] = useState(false);
+
+  useEffect(() => {
+    setShowExample(false);
+  }, [step3Choice]);
 
   const Step2 = () => {
     const choices = [
@@ -222,10 +228,11 @@ const Unit2Section1 = ({ progress, setProgress }) => {
         <StyledWrap>
           <div id="text">
             <p>
-              There are mainly two kinds:
-              <strong>simple interest</strong> and
-              <strong>compound interest</strong>. Have you heard of them before?
+              There are mainly two kinds: <strong> simple interest</strong> and
+              <strong>compound interest</strong>. Did you include them in your
+              response?
             </p>
+            <p>If not, have you heard of them before?</p>
           </div>
           <div className="bubble bubble-bottom-left">
             {choices.map((e, index) => (
@@ -233,7 +240,7 @@ const Unit2Section1 = ({ progress, setProgress }) => {
                 variant="outline-primary"
                 id="response"
                 key={index}
-                onClick={setStep3Choice(index)}
+                onClick={() => setStep3Choice(index)}
               >
                 {e}
               </Button>
@@ -245,17 +252,47 @@ const Unit2Section1 = ({ progress, setProgress }) => {
   };
 
   const Step3 = () => {
-    step3Choice == 0 ? (
-      <BackgroundImage fluid={data.section1_1.childImageSharp.fluid}>
+    // step3Choice == 3 && navigate("unit2#section3");
+    if (step3Choice == 3) {
+      const currentProgress = { ...progress };
+      currentProgress["section2"] = [4, 4];
+      setProgress(currentProgress);
+    }
+
+    return step3Choice == 1 ? (
+      <BackgroundImage fluid={data.section1_2.childImageSharp.fluid}>
         <StyledWrap>
-          <div id="text-small"></div>
+          <div id="text-small">
+            <p>
+              Compound interest is when accrued interest is added to the
+              principle balance.
+            </p>
+            <p>
+              <strong>It is interest on interest.</strong>
+            </p>
+            {showExample && (
+              <p>
+                Compound interest can be on loans and investments. For example,
+                savings account uses compound interest.
+              </p>
+            )}
+          </div>
           <div className="bubble bubble-bottom-left">
+            {!showExample && (
+              <Button
+                variant="outline-primary"
+                id="response"
+                onClick={() => setShowExample(true)}
+              >
+                Can you give me an example?
+              </Button>
+            )}
             <Button
               variant="outline-primary"
               id="response"
-              // onClick={() => setShowStep4(true)}
+              onClick={() => setStep3Choice(1)}
             >
-              Can you give me an example?
+              What is simple interest?
             </Button>
             <Button
               variant="outline-primary"
@@ -264,7 +301,7 @@ const Unit2Section1 = ({ progress, setProgress }) => {
                 const currentProgress = { ...progress };
                 currentProgress["section2"] = [4, 4];
                 setProgress(currentProgress);
-                navigate("unit1#section3");
+                // navigate("unit2#section3");
               }}
             >
               Right on. I’m familiar with the concept of inflation (skip
@@ -274,16 +311,41 @@ const Unit2Section1 = ({ progress, setProgress }) => {
         </StyledWrap>
       </BackgroundImage>
     ) : (
-      <BackgroundImage fluid={data.section1_1.childImageSharp.fluid}>
+      <BackgroundImage fluid={data.section1_2.childImageSharp.fluid}>
         <StyledWrap>
-          <div id="text-small"></div>
+          <div id="text-small">
+            <p>
+              Simple interest is calculated as a percentage of a deposit or
+              loan’s principal balance.{" "}
+            </p>
+            <p>
+              No matter how long a borrower goes without paying a debt or an
+              account holder keeps money in the bank, interest will still be
+              calculated from the original amount.
+            </p>
+            {showExample && (
+              <p>
+                For example, certain types of loans such as mortgage and
+                students loans use simple interest.
+              </p>
+            )}
+          </div>
           <div className="bubble bubble-bottom-left">
+            {!showExample && (
+              <Button
+                variant="outline-primary"
+                id="response"
+                onClick={() => setShowExample(true)}
+              >
+                Can you give me an example?
+              </Button>
+            )}
             <Button
               variant="outline-primary"
               id="response"
-              // onClick={() => setShowStep4(true)}
+              onClick={() => setStep3Choice(0)}
             >
-              Can you give me an example?
+              What is compound interest?
             </Button>
             <Button
               variant="outline-primary"
@@ -292,7 +354,7 @@ const Unit2Section1 = ({ progress, setProgress }) => {
                 const currentProgress = { ...progress };
                 currentProgress["section2"] = [4, 4];
                 setProgress(currentProgress);
-                navigate("unit1#section3");
+                // navigate("unit2#section3");
               }}
             >
               Right on. I’m familiar with the concept of inflation (skip
@@ -309,41 +371,33 @@ const Unit2Section1 = ({ progress, setProgress }) => {
   const Step4 = () => {
     const choices = [
       {
-        option: "Cash",
+        option: "What is simple interest?",
         feedback:
-          "Not quite. Cash doesn’t give time value. Think about what may grow your money",
-        isCorrect: false,
+          "Simple interest is calculated as a percentage of a deposit or loan’s principal balance. No matter how long a borrower goes without paying a debt or an account holder keeps money in the bank, interest will still be calculated from the original amount. Certain types of loans such as mortgage and students loans use simple interest.",
       },
       {
-        option: "Present value",
+        option: "What is compound interest?",
         feedback:
-          "Not quite. Present value is the value of the deposit. It’s does not explain the time value of money. Think about what may grow your money?",
-        isCorrect: false,
+          "Compound interest is when accrued interest is added to the principle balance. It is interest on interest. Compound interest can be on loans and investments. For example, savings account uses compound interest.",
       },
       {
-        option: "Future value",
+        option: "I'm familiar with both!",
         feedback:
-          "Not quite. Future value is the value of the deposit after the investment period. It’s does not explain the time value of money. Think about what may grow your money?",
-        isCorrect: false,
-      },
-      {
-        option: "Interest",
-        feedback:
-          "🎉 Correct! We say that interest is the time value of money because over time you can earn interest on your money.",
-        isCorrect: true,
+          "Awesome! Feel free to skip ahead to the next section if you want to.",
       },
     ];
 
     return (
-      <BackgroundImage fluid={data.section2_3.childImageSharp.fluid}>
+      <BackgroundImage fluid={data.section1_3.childImageSharp.fluid}>
         <MultipleChoice>
           <div id="question">
             <p>
-              According to the video, what is known as the time value of money?
+              There are mainly two kinds: <strong>simple interest</strong> and{" "}
+              <strong>compound interest</strong>. Have you heard of them before?
             </p>
           </div>
           <Row>
-            <Col xs={5}>
+            <Col xs={4}>
               <div id="multiple-choice">
                 {choices.map((e, index) => (
                   <Button
@@ -360,13 +414,9 @@ const Unit2Section1 = ({ progress, setProgress }) => {
                 ))}
               </div>
             </Col>
-            <Col xs={7}>
+            <Col xs={8}>
               {typeof choice === "number" && (
-                <Alert
-                  variant={choices[choice].isCorrect ? "success" : "danger"}
-                >
-                  {choices[choice].feedback}
-                </Alert>
+                <Alert variant="info">{choices[choice].feedback}</Alert>
               )}
             </Col>
           </Row>
@@ -380,9 +430,9 @@ const Unit2Section1 = ({ progress, setProgress }) => {
   return (
     <>
       <Step1 />
-      {progress["section1"][0] >= 1 && <Step2 />}
-      {progress["section1"][0] >= 2 && <Step3 />}
-      {progress["section1"][0] >= 3 && <Step4 />}
+      {/* {progress["section1"][0] >= 1 && <Step2 />} */}
+      {/* {progress["section1"][0] >= 2 && <Step3 />} */}
+      {progress["section1"][0] >= 2 && <Step4 />}
     </>
   );
 };

@@ -131,17 +131,17 @@ const Unit1Section2 = ({ progress }) => {
         :active {
           background-color: #ffe599;
           border-color: #434343;
-          color: 434343;
+          color: #434343;
         }
         :hover {
           background-color: #ffe599;
           border-color: #434343;
-          color: 434343;
+          color: #434343;
         }
         :focus {
           background-color: #ffe599;
           border-color: #434343;
-          color: 434343;
+          color: #434343;
         }
       }
     }
@@ -284,8 +284,6 @@ const Unit1Section2 = ({ progress }) => {
       </BackgroundImage>
     );
   };
-
-  console.log("progress", progress);
 
   return (
     <>

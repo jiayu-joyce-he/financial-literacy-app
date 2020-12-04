@@ -32,7 +32,9 @@ const SectionContent = ({
     } else if (currentUnit == 2) {
       switch (currentSection.slice(-1)) {
         case "1":
-          return <Unit2Section1 progress={progress} />;
+          return (
+            <Unit2Section1 progress={progress} setProgress={setProgress} />
+          );
 
         // case "2":
         //   return <Unit1Section2 progress={progress} />;

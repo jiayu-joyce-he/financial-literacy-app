@@ -4,7 +4,12 @@ import React from "react";
 import { Button, Navbar, Nav, NavItem } from "react-bootstrap";
 
 const Header = ({ siteTitle }) => (
-  <Navbar bg="dark" variant="dark" expand="lg">
+  <Navbar
+    bg="dark"
+    variant="dark"
+    expand="lg"
+    style={{ position: "sticky", top: "0", width: " 100%", zIndex: "100" }}
+  >
     <Navbar.Brand as={Link} href="/">
       {siteTitle}
     </Navbar.Brand>
