@@ -19,9 +19,7 @@ const UnitContent = ({
 }) => {
   const sectionSequence = content.map(e => e.sectionId);
 
-  const currentSection = window.location.href.split("#")[1]
-    ? window.location.href.split("#")[1]
-    : "learning_goals";
+  const [currentSection, setCurrentSection] = useState("learning_goals");
 
   useEffect(() => {
     // Set steps to current section
@@ -73,6 +71,7 @@ const UnitContent = ({
 
   const handleSelect = key => {
     setTabKey(key);
+    setCurrentSection(key.split("#")[1]);
   };
 
   const NextButton = () => {

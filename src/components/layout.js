@@ -52,7 +52,6 @@ const Layout = ({ children }) => {
     ? window.location.href
     : ""
   ).includes("unit");
-  console.log("isUnit", isUnit);
 
   return (
     <>
