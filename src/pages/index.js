@@ -7,6 +7,18 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 import { Link } from "gatsby";
 
+const StyledInnerWrapper = styled.div`
+  padding: 10px;
+  width: 35%;
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  p {
+    font-size: 18px;
+  }
+`;
+
 const IndexPage = () => {
   const data = useStaticQuery(
     graphql`
@@ -23,17 +35,6 @@ const IndexPage = () => {
   );
   const imageData = data.desktop.childImageSharp.fluid;
 
-  const StyledInnerWrapper = styled.div`
-    padding: 10px;
-    width: 35%;
-    margin-top: 10%;
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    p {
-      font-size: 18px;
-    }
-  `;
   return (
     <Layout>
       <SEO title="Home" />

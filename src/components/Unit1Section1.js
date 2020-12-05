@@ -126,10 +126,7 @@ const Unit1Section1 = ({ progress }) => {
           The better choice here is to get the $10,000 <strong>now</strong>,
           because
         </p>
-        <Img
-          fluid={data.section1_2.childImageSharp.fluid}
-          alt="A corgi smiling happily"
-        />
+        <Img fluid={data.section1_2.childImageSharp.fluid} />
       </StyledInstructionalContent>
     );
   };

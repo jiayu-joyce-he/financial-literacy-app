@@ -25,11 +25,12 @@ const LearningGoals = ({ learningGoals }) => {
 
   const StyledInnerWrapper = styled.div`
     min-height: 500px;
-    width: 60%;
+    width: 65%;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: auto;
+    margin-left: 20%;
     div {
       margin: auto;
     }

@@ -26,7 +26,7 @@ const Unit2 = () => {
 
   const content = [
     {
-      sectionName: "Test Yourself",
+      sectionName: "Introduction to Interest",
       sectionId: "section1",
     },
     {
