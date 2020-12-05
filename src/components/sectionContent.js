@@ -5,6 +5,7 @@ import Unit1Section3 from "../components/Unit1Section3";
 import Unit1Section4 from "../components/Unit1Section4";
 import Summaries from "../components/Summaries";
 import Unit2Section1 from "../components/Unit2Section1";
+import Unit2Section2 from "../components/Unit2Section2";
 
 const SectionContent = ({
   currentUnit,
@@ -35,9 +36,8 @@ const SectionContent = ({
           return (
             <Unit2Section1 progress={progress} setProgress={setProgress} />
           );
-
-        // case "2":
-        //   return <Unit1Section2 progress={progress} />;
+        case "2":
+          return <Unit2Section2 progress={progress} />;
         // case "3":
         //   return <Unit1Section3 progress={progress} />;
         // case "4":
