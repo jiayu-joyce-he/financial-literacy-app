@@ -8,10 +8,10 @@ const Unit2 = () => {
   // TODO: update this
   const initialProgress = {
     section1: [0, 3],
-    section2: [0, 6],
+    section2: [0, 3],
     section3: [0, 3],
-    section4: [0, 4],
-    section5: [0, 1],
+    section4: [0, 1],
+    section5: [0, 2],
   };
 
   const [progress, setProgress] = useState(initialProgress);
@@ -38,11 +38,11 @@ const Unit2 = () => {
       sectionId: "section3",
     },
     {
-      sectionName: "Practices",
+      sectionName: "Summary",
       sectionId: "section4",
     },
     {
-      sectionName: "Summary",
+      sectionName: "More Practice",
       sectionId: "section5",
     },
   ];

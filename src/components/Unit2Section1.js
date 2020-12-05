@@ -333,10 +333,7 @@ const Unit2Section1 = ({ progress, setProgress }) => {
             following about it:
           </div>
         </div>
-        <Img
-          fluid={data.section1_4.childImageSharp.fluid}
-          alt="A corgi smiling happily"
-        />
+        <Img fluid={data.section1_4.childImageSharp.fluid} />
       </StyledInstructionalContent>
     );
   };

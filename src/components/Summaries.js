@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from "gatsby";
 import styled from "styled-components";
 import BackgroundImage from "gatsby-background-image";
 
-const Summaries = () => {
+const Summaries = ({ currentUnit }) => {
   const data = useStaticQuery(
     graphql`
       query {
@@ -14,13 +14,16 @@ const Summaries = () => {
             }
           }
         }
+        unit2: file(relativePath: { eq: "unit2summary.png" }) {
+          childImageSharp {
+            fluid(quality: 90, maxWidth: 1920) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
       }
     `
   );
-
-  const currentUnit = window.location.href.split("/")[1]
-    ? window.location.href.split("/")[1]
-    : "unit1";
 
   console.log("currentUnit", currentUnit);
 
@@ -36,15 +39,11 @@ const Summaries = () => {
     }
   `;
 
+  console.log("currentUnit", currentUnit);
+
   return (
-    <BackgroundImage fluid={data[currentUnit].childImageSharp.fluid}>
-      <StyledInnerWrapper>
-        <div>
-          {/* {learningGoals.map(e => (
-            <p>{e}</p>
-          ))} */}
-        </div>
-      </StyledInnerWrapper>
+    <BackgroundImage fluid={data["unit" + currentUnit].childImageSharp.fluid}>
+      <StyledInnerWrapper></StyledInnerWrapper>
     </BackgroundImage>
   );
 };

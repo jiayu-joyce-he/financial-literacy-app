@@ -3,16 +3,7 @@ import { graphql, useStaticQuery } from "gatsby";
 import styled from "styled-components";
 import BackgroundImage from "gatsby-background-image";
 import Img from "gatsby-image";
-import {
-  Card,
-  InputGroup,
-  FormControl,
-  Button,
-  Form,
-  Container,
-  Row,
-  Col,
-} from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 
 const StyledWrap = styled.div`
   min-height: 500px;
@@ -64,14 +55,13 @@ const StyledInstructionalContent = styled.div`
     font-size: 1.25rem;
 
     .bubble {
-      margin-top: 2%;
+      margin-top: 1%;
       position: relative;
       font-size: 1rem;
       background: #d9d9d9;
       border-color: #ffe599;
       border-radius: 1rem;
       padding: 1.25rem;
-      padding-bottom: 0;
       color: #000;
     }
 
@@ -124,14 +114,21 @@ const Unit1Section2 = ({ progress }) => {
             }
           }
         }
-        section3_2: file(relativePath: { eq: "unit2section3_2.png" }) {
+        section4_1: file(relativePath: { eq: "unit2section4_1.png" }) {
           childImageSharp {
             fluid(quality: 90, maxWidth: 1920) {
               ...GatsbyImageSharpFluid_withWebp
             }
           }
         }
-        section3_3: file(relativePath: { eq: "unit2section3_3.png" }) {
+        section4_2: file(relativePath: { eq: "unit2section4_2.png" }) {
+          childImageSharp {
+            fluid(quality: 90, maxWidth: 1920) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
+        section4_3: file(relativePath: { eq: "unit2section4_3.png" }) {
           childImageSharp {
             fluid(quality: 90, maxWidth: 1920) {
               ...GatsbyImageSharpFluid_withWebp
@@ -147,11 +144,9 @@ const Unit1Section2 = ({ progress }) => {
       <BackgroundImage fluid={data.section3_1.childImageSharp.fluid}>
         <StyledInnerWrapper>
           <p>
-            <strong>The most powerful force in the universe?</strong> We sure
-            had our doubts before learning about compound interest (even though
-            it’s coming from Einstein)! But we’re both so convinced by its power
-            that we’re building our careers on it. Let us convince you through
-            some examples!
+            Do you still think <strong>compound interest</strong> and{" "}
+            <strong>time value </strong>are overrated? Let’s look at one two
+            more examples side-by-side!
           </p>
         </StyledInnerWrapper>
       </BackgroundImage>
@@ -164,21 +159,20 @@ const Unit1Section2 = ({ progress }) => {
         <StyledInstructionalContent>
           <div id="speechbubble">
             <div className="bubble bubble-bottom-left">
-              <p>
-                Let's use this investment calculator to answer the following
-                questions:{" "}
-              </p>
-              <p>
-                With a starting amount of merely <strong>$1,000</strong> and{" "}
-                <strong>no </strong>monthly contribution, how much would your
-                $1000 become in <strong>50 years</strong> at a{" "}
-                <strong>10%</strong> annual return rate (compounded{" "}
-                <strong>monthly</strong>)? What if we make it{" "}
-                <strong>70 years</strong>?
-              </p>
+              Let’s compare my plan with Jake’s plan. Who do you think is going
+              to save more money at the age of <strong>65</strong>, given both
+              of our investments yield an annual rate of return of{" "}
+              <strong>7%</strong> and compound annually?
+              <i>
+                {" "}
+                Don’t forget you can use the calculator below to help you
+                decide.{" "}
+              </i>
             </div>
           </div>
         </StyledInstructionalContent>
+        <Img fluid={data.section4_1.childImageSharp.fluid} />
+
         <iframe
           height="570"
           style={{ width: "100%" }}
@@ -206,37 +200,35 @@ const Unit1Section2 = ({ progress }) => {
     return (
       <StyledInstructionalContent>
         <Row>
-          <Col xs={8}>
-            <Img fluid={data.section3_2.childImageSharp.fluid} />
-          </Col>
           <Col>
-            <div id="speechbubble">
-              <div className="bubble bubble-bottom-left yellow">
-                <p>
-                  If you input the numbers correctly like so, you will see that
-                  with <strong>$1,000</strong> principal and an rate of return
-                  of <strong>10%</strong> compounded monthly for
-                  <strong> 50</strong> years, <strong>$1,000</strong> will turn
-                  into <strong>$145,370</strong>!
-                </p>
-              </div>
-            </div>
+            <Col xs={8}>
+              <Img fluid={data.section4_2.childImageSharp.fluid} />
+            </Col>
+            <Col xs={8}>
+              <Img fluid={data.section4_3.childImageSharp.fluid} />
+            </Col>
           </Col>
-        </Row>
 
-        <Row>
-          <Col xs={8}>
-            <Img fluid={data.section3_3.childImageSharp.fluid} />
-          </Col>
           <Col>
             <div id="speechbubble">
               <div className="bubble bubble-bottom-left yellow">
                 <p>
-                  If you make it<strong> 70</strong> years,{" "}
-                  <strong>$1,000</strong> will turn into{" "}
-                  <strong>over 1 million</strong>! That's <strong>1000X</strong>{" "}
-                  of your principal (i.e., original investment). Time really is
-                  money with the power of compound interest!
+                  See it for yourself how much difference{" "}
+                  <strong>a decade</strong> makes! Despite Jake would be
+                  investing <strong>twice</strong> as much for 30 years, I will
+                  end up having more than Jake would have at the age of 65!
+                </p>
+                <p>
+                  Specifically, my principal will be <strong>$101,000 </strong>
+                  and Jake's will be <strong>$154,000</strong>. He would have
+                  invested $53,000 more than I did, but I would have earned
+                  <strong> $20,000</strong> more! This is all because I started
+                  early and would have earned{" "}
+                  <strong>way more interests</strong>!
+                </p>
+                <p>
+                  Don’t worry! Jake has changed his plan now and started
+                  investing.
                 </p>
               </div>
             </div>
@@ -249,8 +241,8 @@ const Unit1Section2 = ({ progress }) => {
   return (
     <>
       <Step1 />
-      {progress["section2"][0] >= 1 && <Step2 />}
-      {progress["section2"][0] >= 2 && <Step3 />}
+      {progress["section3"][0] >= 1 && <Step2 />}
+      {progress["section3"][0] >= 2 && <Step3 />}
     </>
   );
 };
