@@ -13,6 +13,111 @@ import {
   Col,
 } from "react-bootstrap";
 
+const StyledWrap = styled.div`
+  min-height: 500px;
+  width: 46%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  margin-left: 43%;
+  font-size: 1.25rem;
+
+  #text {
+    margin-top: 10rem;
+  }
+
+  .input-group {
+    padding-top: 20px;
+    height: 7rem;
+  }
+`;
+
+const VideoWrap = styled.div`
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .input-group {
+    height: 5rem;
+    margin: 1rem;
+    width: 80%;
+  }
+`;
+
+const StyledInstructionalContent = styled.div`
+  p {
+    font-size: 1.25rem;
+    margin-top: 1rem;
+    text-align: center;
+  }
+`;
+
+const MultipleChoice = styled.div`
+  min-height: 500px;
+  font-size: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .row {
+    margin-top: 3%;
+    margin-bottom: 3%;
+  }
+
+  p {
+    margin-top: 25%;
+    margin-bottom: 5%;
+  }
+
+  .alert {
+    width: 70%;
+    margin-top: 1rem;
+    min-width: 300px;
+  }
+
+  #multiple-choice {
+    min-width: 200px;
+    margin-left: 40%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+
+    p {
+      color: white;
+      font-size: 2rem;
+      font-variant: petite-caps;
+      margin: auto;
+    }
+
+    .choices {
+      font-size: 1.25rem;
+      color: #434343;
+      border-color: #434343;
+      margin-top: 1rem;
+      z-index: 1;
+
+      :active {
+        background-color: #ffe599;
+        border-color: #434343;
+        color: #434343;
+      }
+      :hover {
+        background-color: #ffe599;
+        border-color: #434343;
+        color: #434343;
+      }
+      :focus {
+        background-color: #ffe599;
+        border-color: #434343;
+        color: #434343;
+      }
+    }
+  }
+`;
+
 const Unit1Section2 = ({ progress }) => {
   const data = useStaticQuery(
     graphql`
@@ -41,111 +146,6 @@ const Unit1Section2 = ({ progress }) => {
       }
     `
   );
-
-  const StyledWrap = styled.div`
-    min-height: 500px;
-    width: 46%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: auto;
-    margin-left: 43%;
-    font-size: 1.25rem;
-
-    #text {
-      margin-top: 10rem;
-    }
-
-    .input-group {
-      padding-top: 20px;
-      height: 7rem;
-    }
-  `;
-
-  const VideoWrap = styled.div`
-    min-height: 500px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    .input-group {
-      height: 5rem;
-      margin: 1rem;
-      width: 80%;
-    }
-  `;
-
-  const StyledInstructionalContent = styled.div`
-    p {
-      font-size: 1.25rem;
-      margin-top: 1rem;
-      text-align: center;
-    }
-  `;
-
-  const MultipleChoice = styled.div`
-    min-height: 500px;
-    font-size: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    .row {
-      margin-top: 3%;
-      margin-bottom: 3%;
-    }
-
-    p {
-      margin-top: 25%;
-      margin-bottom: 5%;
-    }
-
-    .alert {
-      width: 70%;
-      margin-top: 1rem;
-      min-width: 300px;
-    }
-
-    #multiple-choice {
-      min-width: 200px;
-      margin-left: 40%;
-      width: 50%;
-      display: flex;
-      flex-direction: column;
-      text-align: start;
-
-      p {
-        color: white;
-        font-size: 2rem;
-        font-variant: petite-caps;
-        margin: auto;
-      }
-
-      .choices {
-        font-size: 1.25rem;
-        color: #434343;
-        border-color: #434343;
-        margin-top: 1rem;
-        z-index: 1;
-
-        :active {
-          background-color: #ffe599;
-          border-color: #434343;
-          color: #434343;
-        }
-        :hover {
-          background-color: #ffe599;
-          border-color: #434343;
-          color: #434343;
-        }
-        :focus {
-          background-color: #ffe599;
-          border-color: #434343;
-          color: #434343;
-        }
-      }
-    }
-  `;
 
   const Step1 = () => {
     return (

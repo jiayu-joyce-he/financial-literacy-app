@@ -55,6 +55,8 @@ const UnitButton = ({ button }) => {
     case "4":
       image = unit4.childImageSharp;
       break;
+    default:
+      image = unit1.childImageSharp;
   }
 
   return (

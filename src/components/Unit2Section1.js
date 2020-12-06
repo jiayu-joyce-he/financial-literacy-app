@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { graphql, useStaticQuery, navigate } from "gatsby";
+import React, { useState } from "react";
+import { graphql, useStaticQuery } from "gatsby";
 import styled from "styled-components";
 import BackgroundImage from "gatsby-background-image";
 import Img from "gatsby-image";
@@ -11,6 +11,164 @@ import {
   Row,
   Col,
 } from "react-bootstrap";
+
+const StyledWrap = styled.div`
+  min-height: 520px;
+  min-width: 500px;
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  margin-left: 35%;
+  font-size: 1.25rem;
+
+  #text {
+    margin-top: 8%;
+  }
+
+  .input-group {
+    padding-top: 3rem;
+    height: 10rem;
+  }
+
+  #text-small {
+    margin-top: 6%;
+    font-size: 1rem;
+  }
+
+  #response {
+    display: flex;
+    color: #434343;
+    border-color: #434343;
+    margin: 0.5rem;
+    z-index: 1;
+
+    :active {
+      background-color: #ffe599;
+      border-color: #434343;
+      color: 434343;
+    }
+    :hover {
+      background-color: #ffe599;
+      border-color: #434343;
+      color: 434343;
+    }
+    :focus {
+      background-color: #ffe599;
+      border-color: #434343;
+      color: 434343;
+    }
+  }
+`;
+
+const MultipleChoice = styled.div`
+  min-height: 600px;
+  font-size: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .row {
+    margin-top: 3%;
+    margin-bottom: 3%;
+  }
+
+  p {
+    width: 60%;
+    margin: 5% auto auto 15%;
+    margin-top: 5%;
+  }
+
+  .alert {
+    width: 70%;
+    margin-top: 1rem;
+    min-width: 300px;
+  }
+
+  #multiple-choice {
+    min-width: 200px;
+    margin-left: 30%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+
+    p {
+      color: white;
+      font-size: 2rem;
+      font-variant: petite-caps;
+      margin: auto;
+    }
+
+    .choices {
+      font-size: 1rem;
+      color: #434343;
+      border-color: #434343;
+      margin-top: 1rem;
+      z-index: 1;
+
+      :active {
+        background-color: #ffe599;
+        border-color: #434343;
+        color: 434343;
+      }
+      :hover {
+        background-color: #ffe599;
+        border-color: #434343;
+        color: 434343;
+      }
+      :focus {
+        background-color: #ffe599;
+        border-color: #434343;
+        color: 434343;
+      }
+    }
+  }
+`;
+
+const StyledInstructionalContent = styled.div`
+  max-height: 500px;
+  width: 80%;
+  margin: auto;
+  margin-top: -10%;
+  margin-bottom: 15%;
+
+  #speechbubble {
+    min-height: 100px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 5%;
+    font-size: 1.25rem;
+
+    .bubble {
+      margin-top: 2%;
+      position: relative;
+      font-size: 1.25rem;
+      background: #d9d9d9;
+      border-color: #ffe599;
+      border-radius: 1rem;
+      padding: 1rem;
+      text-align: center;
+      color: #000;
+    }
+
+    .bubble-bottom-left:before {
+      content: "";
+      width: 0px;
+      height: 0px;
+      position: absolute;
+      border-right: 12px solid #d9d9d9;
+      border-left: 12px solid transparent;
+      border-bottom: 12px solid #d9d9d9;
+      border-top: 20px solid transparent;
+      right: 10px;
+      top: -20px;
+    }
+  }
+`;
 
 const Unit2Section1 = ({ progress, setProgress }) => {
   const data = useStaticQuery(
@@ -48,164 +206,6 @@ const Unit2Section1 = ({ progress, setProgress }) => {
     `
   );
 
-  const StyledWrap = styled.div`
-    min-height: 520px;
-    min-width: 500px;
-    width: 55%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: auto;
-    margin-left: 35%;
-    font-size: 1.25rem;
-
-    #text {
-      margin-top: 8%;
-    }
-
-    .input-group {
-      padding-top: 3rem;
-      height: 10rem;
-    }
-
-    #text-small {
-      margin-top: 6%;
-      font-size: 1rem;
-    }
-
-    #response {
-      display: flex;
-      color: #434343;
-      border-color: #434343;
-      margin: 0.5rem;
-      z-index: 1;
-
-      :active {
-        background-color: #ffe599;
-        border-color: #434343;
-        color: 434343;
-      }
-      :hover {
-        background-color: #ffe599;
-        border-color: #434343;
-        color: 434343;
-      }
-      :focus {
-        background-color: #ffe599;
-        border-color: #434343;
-        color: 434343;
-      }
-    }
-  `;
-
-  const MultipleChoice = styled.div`
-    min-height: 600px;
-    font-size: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    .row {
-      margin-top: 3%;
-      margin-bottom: 3%;
-    }
-
-    p {
-      width: 60%;
-      margin: 5% auto auto 15%;
-      margin-top: 5%;
-    }
-
-    .alert {
-      width: 70%;
-      margin-top: 1rem;
-      min-width: 300px;
-    }
-
-    #multiple-choice {
-      min-width: 200px;
-      margin-left: 30%;
-      width: 50%;
-      display: flex;
-      flex-direction: column;
-      text-align: start;
-
-      p {
-        color: white;
-        font-size: 2rem;
-        font-variant: petite-caps;
-        margin: auto;
-      }
-
-      .choices {
-        font-size: 1rem;
-        color: #434343;
-        border-color: #434343;
-        margin-top: 1rem;
-        z-index: 1;
-
-        :active {
-          background-color: #ffe599;
-          border-color: #434343;
-          color: 434343;
-        }
-        :hover {
-          background-color: #ffe599;
-          border-color: #434343;
-          color: 434343;
-        }
-        :focus {
-          background-color: #ffe599;
-          border-color: #434343;
-          color: 434343;
-        }
-      }
-    }
-  `;
-
-  const StyledInstructionalContent = styled.div`
-    max-height: 500px;
-    width: 80%;
-    margin: auto;
-    margin-top: -10%;
-    margin-bottom: 15%;
-
-    #speechbubble {
-      min-height: 100px;
-      width: 80%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-left: 5%;
-      font-size: 1.25rem;
-
-      .bubble {
-        margin-top: 2%;
-        position: relative;
-        font-size: 1.25rem;
-        background: #d9d9d9;
-        border-color: #ffe599;
-        border-radius: 1rem;
-        padding: 1rem;
-        text-align: center;
-        color: #000;
-      }
-
-      .bubble-bottom-left:before {
-        content: "";
-        width: 0px;
-        height: 0px;
-        position: absolute;
-        border-right: 12px solid #d9d9d9;
-        border-left: 12px solid transparent;
-        border-bottom: 12px solid #d9d9d9;
-        border-top: 20px solid transparent;
-        right: 10px;
-        top: -20px;
-      }
-    }
-  `;
-
   const Step1 = () => {
     return (
       <>
@@ -233,13 +233,6 @@ const Unit2Section1 = ({ progress, setProgress }) => {
     );
   };
 
-  const [step3Choice, setStep3Choice] = useState(0);
-  const [showExample, setShowExample] = useState(false);
-
-  useEffect(() => {
-    setShowExample(false);
-  }, [step3Choice]);
-
   const [choice, setChoice] = useState(null);
 
   const Step3 = () => {
@@ -256,7 +249,7 @@ const Unit2Section1 = ({ progress, setProgress }) => {
     ];
 
     const ChoiceResponse = () => {
-      if (choice == 0) {
+      if (choice === 0) {
         return (
           <Alert variant="info">
             Simple interest is calculated as a percentage of a deposit or loan’s
@@ -269,18 +262,18 @@ const Unit2Section1 = ({ progress, setProgress }) => {
             simple interest.
           </Alert>
         );
-      } else if (choice == 1) {
+      } else if (choice === 1) {
         return (
           <Alert variant="info">
             Compound interest is when accrued interest is added to the principle
             balance. <strong>It is interest on interest.</strong>
           </Alert>
         );
-      } else if (choice == 2) {
+      } else if (choice === 2) {
         return (
           <Alert variant="info">
             Awesome! Feel free to skip ahead to{" "}
-            <Alert.Link href="unit2#section2">the next section</Alert.Link>! if
+            <Alert.Link href="/unit2#section3">the next section</Alert.Link>! if
             you want to.
           </Alert>
         );

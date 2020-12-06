@@ -45,12 +45,14 @@ const SectionContent = ({
         case "4":
           return <Summaries currentUnit={currentUnit} />;
         case "5":
-          return <Unit2Section4 progress={progress} />;
+          return <Unit2Section4 />;
       }
     }
   };
 
-  return <>{currentSection != "learning_goals" && <CurrentSectionContent />}</>;
+  return (
+    <>{currentSection !== "learning_goals" && <CurrentSectionContent />}</>
+  );
 };
 
 export default SectionContent;

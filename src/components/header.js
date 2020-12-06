@@ -1,7 +1,7 @@
 import { Link } from "gatsby";
 import PropTypes from "prop-types";
 import React from "react";
-import { Button, Navbar, Nav, NavItem } from "react-bootstrap";
+import { Navbar, Nav, NavItem } from "react-bootstrap";
 
 const Header = ({ siteTitle }) => (
   <Navbar
@@ -10,14 +10,14 @@ const Header = ({ siteTitle }) => (
     expand="lg"
     style={{ position: "sticky", top: "0", width: " 100%", zIndex: "100" }}
   >
-    <Navbar.Brand as={Link} href="/">
+    <Navbar.Brand as={Link} href="/" to="/">
       {siteTitle}
     </Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="mr-auto">
-        <NavItem href="/about">
-          <Nav.Link as={Link} activeClassName="active" to="/about">
+        <NavItem href="/pre-quiz">
+          <Nav.Link as={Link} activeClassName="active" to="/pre-quiz">
             Pre-quiz
           </Nav.Link>
         </NavItem>

@@ -20,7 +20,7 @@ const CalculatorQuizWrapper = styled.div`
   margin: 2rem 0;
 `;
 
-const Unit1Section2 = ({ progress }) => {
+const Unit2Section4 = () => {
   const data = useStaticQuery(
     graphql`
       query {
@@ -74,7 +74,7 @@ const Unit1Section2 = ({ progress }) => {
                 scrolling="no"
                 title="Compound Interest Calculator"
                 src="https://codepen.io/jiayu-joyce-he/embed/PoGNPmR?height=570&theme-id=dark&default-tab=result"
-                frameborder="no"
+                frameBorder="no"
                 loading="lazy"
                 allowtransparency="true"
                 allowfullscreen="true"
@@ -96,6 +96,7 @@ const Unit1Section2 = ({ progress }) => {
                 frameBorder="0"
                 marginHeight="0"
                 marginWidth="0"
+                title="unit-2-quiz"
               >
                 Loading…
               </iframe>
@@ -106,16 +107,11 @@ const Unit1Section2 = ({ progress }) => {
     );
   };
 
-  const Step2 = () => {
-    return <></>;
-  };
-
   return (
     <>
       <Step1 />
-      {progress["section2"][0] >= 1 && <Step2 />}
     </>
   );
 };
 
-export default Unit1Section2;
+export default Unit2Section4;

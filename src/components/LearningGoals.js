@@ -3,6 +3,19 @@ import { graphql, useStaticQuery } from "gatsby";
 import styled from "styled-components";
 import BackgroundImage from "gatsby-background-image";
 
+const StyledInnerWrapper = styled.div`
+  min-height: 500px;
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  margin-left: 20%;
+  div {
+    margin: auto;
+  }
+`;
+
 const LearningGoals = ({ learningGoals }) => {
   const data = useStaticQuery(
     graphql`
@@ -23,25 +36,12 @@ const LearningGoals = ({ learningGoals }) => {
   const LearningGoalBackground =
     data.LearningGoalBackground.childImageSharp.fluid;
 
-  const StyledInnerWrapper = styled.div`
-    min-height: 500px;
-    width: 65%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: auto;
-    margin-left: 20%;
-    div {
-      margin: auto;
-    }
-  `;
-
   return (
     <BackgroundImage fluid={LearningGoalBackground}>
       <StyledInnerWrapper>
         <div>
-          {learningGoals.map(e => (
-            <p>{e}</p>
+          {learningGoals.map((e, index) => (
+            <p key={index}>{e}</p>
           ))}
         </div>
       </StyledInnerWrapper>

@@ -41,7 +41,7 @@ const IndexPage = () => {
       <BackgroundImage fluid={imageData}>
         <StyledInnerWrapper>
           <h1>WELCOME!</h1>
-          <p>My name is Zoe and I am a financial advisor 🤓</p>
+          <p>My name is Zoe and I am a financial advisor. Nice to meet you!</p>
           <p>
             My team and I are passionate about sharing our knowledge and help
             learners like you build <strong>financial literacy</strong>(that is

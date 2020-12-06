@@ -5,17 +5,18 @@ import SEO from "../components/seo";
 import { Button } from "react-bootstrap";
 import { Link } from "gatsby";
 
-const AboutPage = () => {
-  const StyledInnerWrapper = styled.div`
-    width: 100%;
-    margin-top: 3%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  `;
+const StyledInnerWrapper = styled.div`
+  width: 100%;
+  margin-top: 3%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const PreQuizPage = () => {
   return (
     <Layout>
-      <SEO title="About" />
+      <SEO title="Pre-quiz" />
       <StyledInnerWrapper>
         <h1>Pre-quiz</h1>
         <p>
@@ -31,8 +32,9 @@ const AboutPage = () => {
           width="700"
           height="520"
           frameBorder="0"
-          marginheight="0"
-          marginwidth="0"
+          marginHeight="0"
+          marginWidth="0"
+          title="pre-quiz"
         >
           Loading…
         </iframe>
@@ -41,4 +43,4 @@ const AboutPage = () => {
   );
 };
 
-export default AboutPage;
+export default PreQuizPage;

@@ -1,8 +1,78 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { graphql, useStaticQuery, navigate } from "gatsby";
 import styled from "styled-components";
 import BackgroundImage from "gatsby-background-image";
 import { Button } from "react-bootstrap";
+
+const StyledWrap = styled.div`
+  min-height: 500px;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 5%;
+  font-size: 1.25rem;
+
+  #text {
+    margin-top: 10rem;
+    font-size: 1.25rem;
+  }
+
+  #text-small {
+    margin-top: 8.5rem;
+    font-size: 1rem;
+  }
+
+  .bubble {
+    margin-top: 15%;
+    position: relative;
+    font-size: 1.25rem;
+    line-height: 1rem;
+    background: #d9d9d9;
+    border-color: #ffe599;
+    border-radius: 1rem;
+    padding: 1rem;
+    text-align: center;
+    color: #000;
+  }
+
+  .bubble-bottom-left:before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 24px solid #d9d9d9;
+    border-right: 12px solid transparent;
+    border-top: 12px solid #d9d9d9;
+    border-bottom: 20px solid transparent;
+    left: 32px;
+    bottom: -24px;
+  }
+
+  #response {
+    font-size: 1.25rem;
+    color: #434343;
+    border-color: #434343;
+    margin: 0.25rem;
+    z-index: 1;
+
+    :active {
+      background-color: #ffe599;
+      border-color: #434343;
+      color: 434343;
+    }
+    :hover {
+      background-color: #ffe599;
+      border-color: #434343;
+      color: 434343;
+    }
+    :focus {
+      background-color: #ffe599;
+      border-color: #434343;
+      color: 434343;
+    }
+  }
+`;
 
 const Unit1Section4 = ({ progress, setProgress }) => {
   const data = useStaticQuery(
@@ -26,75 +96,8 @@ const Unit1Section4 = ({ progress, setProgress }) => {
     `
   );
 
-  const StyledWrap = styled.div`
-    min-height: 500px;
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: 5%;
-    font-size: 1.25rem;
-
-    #text {
-      margin-top: 10rem;
-      font-size: 1.25rem;
-    }
-
-    #text-small {
-      margin-top: 8.5rem;
-      font-size: 1rem;
-    }
-
-    .bubble {
-      margin-top: 15%;
-      position: relative;
-      font-size: 1.25rem;
-      line-height: 1rem;
-      background: #d9d9d9;
-      border-color: #ffe599;
-      border-radius: 1rem;
-      padding: 1rem;
-      text-align: center;
-      color: #000;
-    }
-
-    .bubble-bottom-left:before {
-      content: "";
-      width: 0px;
-      height: 0px;
-      position: absolute;
-      border-left: 24px solid #d9d9d9;
-      border-right: 12px solid transparent;
-      border-top: 12px solid #d9d9d9;
-      border-bottom: 20px solid transparent;
-      left: 32px;
-      bottom: -24px;
-    }
-
-    #response {
-      font-size: 1.25rem;
-      color: #434343;
-      border-color: #434343;
-      margin: 0.25rem;
-      z-index: 1;
-
-      :active {
-        background-color: #ffe599;
-        border-color: #434343;
-        color: 434343;
-      }
-      :hover {
-        background-color: #ffe599;
-        border-color: #434343;
-        color: 434343;
-      }
-      :focus {
-        background-color: #ffe599;
-        border-color: #434343;
-        color: 434343;
-      }
-    }
-  `;
+  const [step3Choice, setStep3Choice] = useState(0);
+  const [showStep4, setShowStep4] = useState(false);
 
   const Step1 = () => {
     return (
@@ -111,9 +114,6 @@ const Unit1Section4 = ({ progress, setProgress }) => {
       </BackgroundImage>
     );
   };
-
-  const [step3Choice, setStep3Choice] = useState(0);
-  const [showStep4, setShowStep4] = useState(false);
 
   const Step2 = () => {
     const choices = [
@@ -138,7 +138,7 @@ const Unit1Section4 = ({ progress, setProgress }) => {
                 variant="outline-primary"
                 id="response"
                 key={index}
-                onClick={setStep3Choice(index)}
+                onClick={() => setStep3Choice(index)}
               >
                 {e}
               </Button>
@@ -195,13 +195,10 @@ const Unit1Section4 = ({ progress, setProgress }) => {
               variant="outline-primary"
               id="response"
               onClick={() => {
-                console.log("section 4 progress", progress);
                 const currentProgress = { ...progress };
                 currentProgress["section4"] = [4, 4];
-                console.log("currentProgress", currentProgress);
-                console.log("setProgress", setProgress);
                 setProgress(currentProgress);
-                navigate("unit1#section5");
+                navigate("#section5");
               }}
             >
               Right on. I’m familiar with the concept of inflation (skip

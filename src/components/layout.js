@@ -9,20 +9,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { useStaticQuery, graphql } from "gatsby";
-import {
-  Container,
-  ProgressBar,
-  Nav,
-  ListGroup,
-  Row,
-  Col,
-} from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
 import Header from "./header";
-import {
-  StyledUnitBannerWrapper,
-  StyledSectionWrapper,
-} from "../components/SharedStyledComponents";
 import "./layout.scss";
 
 const StyledFooter = styled.div`

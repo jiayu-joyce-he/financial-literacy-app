@@ -7,6 +7,20 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 import UnitButton from "../components/unit-button";
 
+const StyledInnerWrapper = styled.div`
+  padding: 10px;
+  min-height: 500px;
+  width: 100%;
+  margin-top: 3%;
+  margin-bottom: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  p {
+    font-size: 24px;
+  }
+`;
+
 const Overview = () => {
   const data = useStaticQuery(
     graphql`
@@ -23,19 +37,6 @@ const Overview = () => {
   );
   const imageData = data.desktop.childImageSharp.fluid;
 
-  const StyledInnerWrapper = styled.div`
-    padding: 10px;
-    min-height: 500px;
-    width: 100%;
-    margin-top: 3%;
-    margin-bottom: 5%;
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    p {
-      font-size: 24px;
-    }
-  `;
   return (
     <Layout>
       <SEO title="Home" />

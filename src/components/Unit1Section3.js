@@ -5,6 +5,44 @@ import BackgroundImage from "gatsby-background-image";
 import Img from "gatsby-image";
 import { Col, Row } from "react-bootstrap";
 
+const StyledInstructionalContent = styled.div`
+  p {
+    font-size: 1.25rem;
+    margin-top: 1rem;
+    text-align: center;
+  }
+`;
+
+const StyledInnerWrapper = styled.div`
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+
+  #diagnostic-quiz {
+    max-width: 600px;
+    color: white;
+    font-size: 2rem;
+    font-variant: petite-caps;
+    margin: auto;
+    text-align: center;
+    text-shadow: 2px 2px 2px #000;
+  }
+
+  #interest {
+    min-height: 420px;
+    font-size: 1.25rem;
+    margin: auto;
+    width: 75%;
+    margin-top: 20%;
+
+    .col {
+      margin-top: 28%;
+    }
+  }
+`;
+
 const Unit1Section3 = ({ progress }) => {
   const data = useStaticQuery(
     graphql`
@@ -34,36 +72,6 @@ const Unit1Section3 = ({ progress }) => {
     `
   );
 
-  const StyledInnerWrapper = styled.div`
-    min-height: 400px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: auto;
-
-    #diagnostic-quiz {
-      max-width: 600px;
-      color: white;
-      font-size: 2rem;
-      font-variant: petite-caps;
-      margin: auto;
-      text-align: center;
-      text-shadow: 2px 2px 2px #000;
-    }
-
-    #interest {
-      min-height: 420px;
-      font-size: 1.25rem;
-      margin: auto;
-      width: 75%;
-      margin-top: 20%;
-
-      .col {
-        margin-top: 28%;
-      }
-    }
-  `;
-
   const Step1 = () => {
     return (
       <>
@@ -81,6 +89,7 @@ const Unit1Section3 = ({ progress }) => {
                 frameBorder="0"
                 marginHeight="0"
                 marginWidth="0"
+                title="quiz"
               >
                 Loading…
               </iframe>
@@ -90,14 +99,6 @@ const Unit1Section3 = ({ progress }) => {
       </>
     );
   };
-
-  const StyledInstructionalContent = styled.div`
-    p {
-      font-size: 1.25rem;
-      margin-top: 1rem;
-      text-align: center;
-    }
-  `;
 
   const Step2 = () => {
     return (
@@ -139,7 +140,7 @@ const Unit1Section3 = ({ progress }) => {
 
   return (
     <>
-      {progress["section3"][0] == 0 && <Step1 />}
+      {progress["section3"][0] === 0 && <Step1 />}
       {progress["section3"][0] >= 1 && <Step2 />}
       {progress["section3"][0] >= 2 && <Step3 />}
     </>

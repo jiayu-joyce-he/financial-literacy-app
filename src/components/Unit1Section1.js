@@ -5,6 +5,63 @@ import BackgroundImage from "gatsby-background-image";
 import Img from "gatsby-image";
 import { Button } from "react-bootstrap";
 
+const StyledInstructionalContent = styled.div`
+  p {
+    font-size: 1.25rem;
+    margin-top: 1rem;
+    text-align: center;
+  }
+`;
+
+const StyledInnerWrapper = styled.div`
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  div {
+    margin: auto;
+  }
+  #multiple-choice {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    p {
+      color: white;
+      font-size: 2rem;
+      font-variant: petite-caps;
+      margin: auto;
+      text-align: center;
+    }
+
+    .choices {
+      font-size: 1.25rem;
+      color: #ffe599;
+      border-color: #ffe599;
+      margin-top: 1rem;
+      :active {
+        background-color: #ffe599;
+        border-color: #ffe599;
+        color: black;
+      }
+      :hover {
+        background-color: #ffe599;
+        border-color: #ffe599;
+        color: black;
+      }
+      :focus {
+        background-color: #ffe599;
+        border-color: #ffe599;
+        color: black;
+      }
+    }
+
+    #wrong {
+      margin-top: 1rem;
+    }
+  }
+`;
+
 const Unit1Section1 = ({ progress }) => {
   const data = useStaticQuery(
     graphql`
@@ -28,55 +85,6 @@ const Unit1Section1 = ({ progress }) => {
   );
 
   const section1_1_image = data.section1_1.childImageSharp.fluid;
-
-  const StyledInnerWrapper = styled.div`
-    min-height: 500px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: auto;
-    div {
-      margin: auto;
-    }
-    #multiple-choice {
-      width: 55%;
-      display: flex;
-      flex-direction: column;
-      p {
-        color: white;
-        font-size: 2rem;
-        font-variant: petite-caps;
-        margin: auto;
-        text-align: center;
-      }
-
-      .choices {
-        font-size: 1.25rem;
-        color: #ffe599;
-        border-color: #ffe599;
-        margin-top: 1rem;
-        :active {
-          background-color: #ffe599;
-          border-color: #ffe599;
-          color: black;
-        }
-        :hover {
-          background-color: #ffe599;
-          border-color: #ffe599;
-          color: black;
-        }
-        :focus {
-          background-color: #ffe599;
-          border-color: #ffe599;
-          color: black;
-        }
-      }
-
-      #wrong {
-        margin-top: 1rem;
-      }
-    }
-  `;
 
   const Step1 = () => {
     return (
@@ -110,14 +118,6 @@ const Unit1Section1 = ({ progress }) => {
       </BackgroundImage>
     );
   };
-
-  const StyledInstructionalContent = styled.div`
-    p {
-      font-size: 1.25rem;
-      margin-top: 1rem;
-      text-align: center;
-    }
-  `;
 
   const Step2 = () => {
     return (

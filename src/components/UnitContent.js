@@ -7,7 +7,7 @@ import {
 } from "./SharedStyledComponents";
 import LearningGoals from "./LearningGoals";
 import LoadingButton from "./LoadingButton";
-import SectionContent from "./SectionContent";
+import SectionContent from "./SectionContent.js";
 
 const UnitContent = ({
   unitId,
@@ -20,10 +20,14 @@ const UnitContent = ({
   const sectionSequence = content.map(e => e.sectionId);
 
   const [currentSection, setCurrentSection] = useState("learning_goals");
+  const [currentStep, setCurrentStep] = useState(0);
+  const [totalSteps, setTotalSteps] = useState(1);
+  const [progressShown, setProgressShown] = useState(0);
+  const [tabKey, setTabKey] = useState("#learning_goals");
 
   useEffect(() => {
     // Set steps to current section
-    if (currentSection != "learning_goals") {
+    if (currentSection !== "learning_goals") {
       setCurrentStep(progress[currentSection][0]);
       setTotalSteps(progress[currentSection][1]);
     } else if (progress["learning_goals"]) {
@@ -32,10 +36,17 @@ const UnitContent = ({
     }
   }, [currentSection]);
 
-  const [currentStep, setCurrentStep] = useState(0);
-  const [totalSteps, setTotalSteps] = useState(1);
-  const [progressShown, setProgressShown] = useState(0);
-  const [tabKey, setTabKey] = useState("#learning_goals");
+  useEffect(() => {
+    setProgressShown(
+      currentStep / totalSteps <= 1 ? (currentStep / totalSteps) * 100 : 100
+    );
+    // Update progress every time we click the continue button
+    if (currentStep) {
+      const currentProgress = { ...progress };
+      currentProgress[currentSection] = [currentStep, totalSteps];
+      setProgress(currentProgress);
+    }
+  }, [currentStep]);
 
   const SectionProgress = () => {
     return (
@@ -50,44 +61,27 @@ const UnitContent = ({
     );
   };
 
-  let messagesEnd;
-  const scrollToBottom = () => {
-    messagesEnd.scrollIntoView({ behavior: "smooth" });
-  };
-
-  useEffect(() => {
-    currentStep !== 0 && scrollToBottom();
-    setProgressShown(
-      currentStep / totalSteps <= 1 ? (currentStep / totalSteps) * 100 : 100
-    );
-    // Update progress every time we click the continue button
-    if (currentStep) {
-      const currentProgress = { ...progress };
-      currentProgress[currentSection] = [currentStep, totalSteps];
-      setProgress(currentProgress);
-    }
-  }, [currentStep]);
-
   const handleSelect = key => {
     setTabKey(key);
+    console.log("key", key);
     setCurrentSection(key.split("#")[1]);
   };
 
   const NextButton = () => {
     if (
-      sectionSequence[sectionSequence.length - 1] == currentSection &&
+      sectionSequence[sectionSequence.length - 1] === currentSection &&
       unitId < 4
     ) {
       return (
         <Alert variant="success">
           Creat job! Let's move on to{" "}
-          <Alert.Link onClick={() => navigate(`unit${unitId + 1}`)}>
+          <Alert.Link onClick={() => navigate(`/unit${unitId + 1}`)}>
             next unit
           </Alert.Link>
           !
         </Alert>
       );
-    } else if (currentStep != totalSteps) {
+    } else if (currentStep !== totalSteps) {
       return (
         <LoadingButton
           setCurrentStep={setCurrentStep}
@@ -107,9 +101,9 @@ const UnitContent = ({
                 }`
               )
             }
-            href={`#${
-              sectionSequence[sectionSequence.indexOf(currentSection) + 1]
-            }`}
+            // href={`#${
+            //   sectionSequence[sectionSequence.indexOf(currentSection) + 1]
+            // }`}
           >
             the next section
           </Alert.Link>
@@ -126,17 +120,13 @@ const UnitContent = ({
           <Col sm={3} id="leftbar-wrapper">
             <div className="sidebar-heading">{unitTitle} </div>
             <ListGroup>
-              <ListGroup.Item
-                onSelect={handleSelect}
-                action
-                href="#learning_goals"
-              >
+              <ListGroup.Item onSelect={handleSelect} href="#learning_goals">
                 Learning Goals
               </ListGroup.Item>
               {content.map(e => (
                 <ListGroup.Item
-                  action
                   href={`#${e.sectionId}`}
+                  key={`#${e.sectionId}`}
                   onSelect={handleSelect}
                 >
                   {e.sectionName}
@@ -150,8 +140,8 @@ const UnitContent = ({
               <Tab.Pane eventKey="#learning_goals">
                 <LearningGoals learningGoals={learningGoals} />
               </Tab.Pane>
-              {content.map(e => (
-                <Tab.Pane action eventKey={`#${e.sectionId}`}>
+              {content.map((e, index) => (
+                <Tab.Pane eventKey={`#${e.sectionId}`} key={index}>
                   <SectionContent
                     currentUnit={unitId}
                     currentSection={currentSection}
@@ -163,12 +153,6 @@ const UnitContent = ({
               ))}
             </Tab.Content>
             <NextButton />
-            <div
-              style={{ float: "left", clear: "both" }}
-              ref={el => {
-                messagesEnd = el;
-              }}
-            ></div>
           </Col>
         </Row>
       </Tab.Container>

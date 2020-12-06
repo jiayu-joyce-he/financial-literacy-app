@@ -3,6 +3,18 @@ import { graphql, useStaticQuery } from "gatsby";
 import styled from "styled-components";
 import BackgroundImage from "gatsby-background-image";
 
+const StyledInnerWrapper = styled.div`
+  min-height: 500px;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  div {
+    margin: auto;
+  }
+`;
+
 const Summaries = ({ currentUnit }) => {
   const data = useStaticQuery(
     graphql`
@@ -24,22 +36,6 @@ const Summaries = ({ currentUnit }) => {
       }
     `
   );
-
-  console.log("currentUnit", currentUnit);
-
-  const StyledInnerWrapper = styled.div`
-    min-height: 500px;
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: auto;
-    div {
-      margin: auto;
-    }
-  `;
-
-  console.log("currentUnit", currentUnit);
 
   return (
     <BackgroundImage fluid={data["unit" + currentUnit].childImageSharp.fluid}>

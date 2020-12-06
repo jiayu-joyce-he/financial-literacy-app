@@ -1,29 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import styled from "styled-components";
 import BackgroundImage from "gatsby-background-image";
 import Img from "gatsby-image";
 import { Row, Col } from "react-bootstrap";
-
-const StyledWrap = styled.div`
-  min-height: 500px;
-  width: 46%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: auto;
-  margin-left: 43%;
-  font-size: 1.25rem;
-
-  #text {
-    margin-top: 10rem;
-  }
-
-  .input-group {
-    padding-top: 20px;
-    height: 7rem;
-  }
-`;
 
 const StyledInstructionalContent = styled.div`
   // max-height: 500px;
@@ -103,7 +83,7 @@ const StyledInnerWrapper = styled.div`
   }
 `;
 
-const Unit1Section2 = ({ progress }) => {
+const Unit2Section3 = ({ progress }) => {
   const data = useStaticQuery(
     graphql`
       query {
@@ -179,7 +159,7 @@ const Unit1Section2 = ({ progress }) => {
           scrolling="no"
           title="Compound Interest Calculator"
           src="https://codepen.io/jiayu-joyce-he/embed/PoGNPmR?height=570&theme-id=dark&default-tab=result"
-          frameborder="no"
+          frameBorder="no"
           loading="lazy"
           allowtransparency="true"
           allowfullscreen="true"
@@ -247,4 +227,4 @@ const Unit1Section2 = ({ progress }) => {
   );
 };
 
-export default Unit1Section2;
+export default Unit2Section3;
