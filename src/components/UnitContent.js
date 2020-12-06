@@ -52,7 +52,6 @@ const UnitContent = ({
 
   let messagesEnd;
   const scrollToBottom = () => {
-    console.log("scrolling");
     messagesEnd.scrollIntoView({ behavior: "smooth" });
   };
 

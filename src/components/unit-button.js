@@ -47,7 +47,6 @@ const UnitButton = ({ button }) => {
       image = unit1.childImageSharp;
       break;
     case "2":
-      console.log("unit2", unit2);
       image = unit2.childImageSharp;
       break;
     case "3":
