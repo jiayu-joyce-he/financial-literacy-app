@@ -3,7 +3,7 @@ import Unit1Section1 from "./unit1-section1";
 import Unit1Section2 from "./unit1-section2";
 import Unit1Section3 from "./unit1-section3";
 import Unit1Section4 from "./unit1-section4";
-import Summaries from "./summaries";
+import Summaries from "./summary-sections";
 import Unit2Section1 from "./unit2-section1";
 import Unit2Section2 from "./unit2-section2";
 import Unit2Section3 from "./unit2-section3";
