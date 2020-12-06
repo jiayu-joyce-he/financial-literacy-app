@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Layout from "../components/layout";
-import UnitContent from "../components/UnitContent";
+import UnitContent from "../components/unit-content";
 import SEO from "../components/seo";
 
 const Unit2 = () => {

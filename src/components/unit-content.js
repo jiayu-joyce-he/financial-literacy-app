@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { navigate } from "gatsby";
 import { Tab, ListGroup, Row, Col, ProgressBar, Alert } from "react-bootstrap";
-import {
-  StyledSideBar,
-  StyledUnitBannerWrapper,
-} from "./SharedStyledComponents";
-import LearningGoals from "./LearningGoals";
-import LoadingButton from "./LoadingButton";
-import SectionContent from "./SectionContent";
+import { StyledSideBar, StyledUnitBannerWrapper } from "./styled-wrapper";
+import LearningGoals from "./learning-goals";
+import LoadingButton from "./loading-button";
+import SectionContent from "./section-content";
 
 const UnitContent = ({
   unitId,

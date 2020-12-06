@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
-import { StyledNextSection } from "./SharedStyledComponents";
+import { StyledNextSection } from "./styled-wrapper";
 
 const LoadingButton = ({ setCurrentStep, currentStep, totalSteps }) => {
   const [isLoading, setLoading] = useState(false);
