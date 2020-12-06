@@ -2,7 +2,7 @@ import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import Img from "gatsby-image";
 import { Link } from "gatsby";
-import { StyledImageWrapper } from "../components/SharedStyledComponents";
+import { StyledImageWrapper } from "./SharedStyledComponents";
 
 const UnitButton = ({ button }) => {
   const { unit1, unit2, unit3, unit4 } = useStaticQuery(

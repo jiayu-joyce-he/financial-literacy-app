@@ -5,7 +5,7 @@ import { Row, Col } from "react-bootstrap";
 import BackgroundImage from "gatsby-background-image";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-import UnitButton from "../components/unit-button";
+import UnitButton from "../components/UnitButton";
 
 const StyledInnerWrapper = styled.div`
   padding: 10px;
