@@ -53,7 +53,7 @@ const IndexPage = () => {
             get started… because time is money!
           </p>
           <p>
-            <Button as={Link} to="/about" variant="primary">
+            <Button as={Link} to="/pre-quiz" variant="primary">
               Get Started
             </Button>
           </p>
