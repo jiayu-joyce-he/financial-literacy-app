@@ -1,13 +1,13 @@
 import React from "react";
-import Unit1Section1 from "../components/Unit1Section1";
-import Unit1Section2 from "../components/Unit1Section2";
-import Unit1Section3 from "../components/Unit1Section3";
-import Unit1Section4 from "../components/Unit1Section4";
-import Summaries from "../components/Summaries";
-import Unit2Section1 from "../components/Unit2Section1";
-import Unit2Section2 from "../components/Unit2Section2";
-import Unit2Section3 from "../components/Unit2Section3";
-import Unit2Section4 from "../components/Unit2Section4";
+import Unit1Section1 from "./Unit1Section1";
+import Unit1Section2 from "./Unit1Section2";
+import Unit1Section3 from "./Unit1Section3";
+import Unit1Section4 from "./Unit1Section4";
+import Summaries from "./Summaries";
+import Unit2Section1 from "./Unit2Section1";
+import Unit2Section2 from "./Unit2Section2";
+import Unit2Section3 from "./Unit2Section3";
+import Unit2Section4 from "./Unit2Section4";
 
 const SectionContent = ({
   currentUnit,
