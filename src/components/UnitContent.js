@@ -7,7 +7,7 @@ import {
 } from "./SharedStyledComponents";
 import LearningGoals from "./LearningGoals";
 import LoadingButton from "./LoadingButton";
-import SectionContent from "./SectionContent.js";
+import SectionContent from "./SectionContent";
 
 const UnitContent = ({
   unitId,
