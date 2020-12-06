@@ -170,7 +170,7 @@ const StyledInstructionalContent = styled.div`
   }
 `;
 
-const Unit2Section1 = ({ progress, setProgress }) => {
+const Unit2Section1 = ({ progress, changeSection }) => {
   const data = useStaticQuery(
     graphql`
       query {
@@ -273,8 +273,10 @@ const Unit2Section1 = ({ progress, setProgress }) => {
         return (
           <Alert variant="info">
             Awesome! Feel free to skip ahead to{" "}
-            <Alert.Link href="/unit2#section3">the next section</Alert.Link>! if
-            you want to.
+            <Alert.Link onClick={() => changeSection("#section2")}>
+              the next section
+            </Alert.Link>
+            ! if you want to.
           </Alert>
         );
       }

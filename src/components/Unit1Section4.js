@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { graphql, useStaticQuery, navigate } from "gatsby";
+import { graphql, useStaticQuery } from "gatsby";
 import styled from "styled-components";
 import BackgroundImage from "gatsby-background-image";
 import { Button } from "react-bootstrap";
@@ -59,22 +59,22 @@ const StyledWrap = styled.div`
     :active {
       background-color: #ffe599;
       border-color: #434343;
-      color: 434343;
+      color: #434343;
     }
     :hover {
       background-color: #ffe599;
       border-color: #434343;
-      color: 434343;
+      color: #434343;
     }
     :focus {
       background-color: #ffe599;
       border-color: #434343;
-      color: 434343;
+      color: #434343;
     }
   }
 `;
 
-const Unit1Section4 = ({ progress, setProgress }) => {
+const Unit1Section4 = ({ progress, setProgress, changeSection }) => {
   const data = useStaticQuery(
     graphql`
       query {
@@ -96,7 +96,7 @@ const Unit1Section4 = ({ progress, setProgress }) => {
     `
   );
 
-  const [step3Choice, setStep3Choice] = useState(0);
+  const [step3Choice, setStep3Choice] = useState(null);
   const [showStep4, setShowStep4] = useState(false);
 
   const Step1 = () => {
@@ -122,91 +122,93 @@ const Unit1Section4 = ({ progress, setProgress }) => {
       "I don’t know.",
     ];
     return (
-      <BackgroundImage fluid={data.section4_1.childImageSharp.fluid}>
-        <StyledWrap>
-          <div id="text">
-            <p>
-              Let’s say I also got $10,000 prize money, and I want to store it
-              in my personal vault (as shown on the right) instead of a bank
-              that offers me 10% annual interest.
-            </p>
-            <p>Do you think that is a good idea?</p>
-          </div>
-          <div className="bubble bubble-bottom-left">
-            {choices.map((e, index) => (
-              <Button
-                variant="outline-primary"
-                id="response"
-                key={index}
-                onClick={() => setStep3Choice(index)}
-              >
-                {e}
-              </Button>
-            ))}
-          </div>
-        </StyledWrap>
-      </BackgroundImage>
-    );
-  };
-
-  const Step3 = () => {
-    return (
-      <BackgroundImage fluid={data.section4_1.childImageSharp.fluid}>
-        <StyledWrap>
-          <div id="text-small">
-            {step3Choice == 0 ? (
-              <>
-                <p>
-                  Awesome! Then you know know where I’m going with
-                  this--inflation!
-                </p>
-                <p>
-                  Inflation refers to a general increase in prices and fall in
-                  the purchasing value of money. This means that the $10,000 I
-                  put away in my safe will allow me to buy less goods in the
-                  future given inflation!
-                </p>
-              </>
-            ) : (
-              <>
-                <p>
-                  Although it’s a very safe, it may NOT be the best option for
-                  me because my $10,000 cash will depreciate in value due to
-                  inflation.
-                </p>
-                <p>
-                  Inflation refers to a general increase in prices and fall in
-                  the purchasing value of money. This means that the $10,000 I
-                  put away in my safe will allow me to buy less goods in the
-                  future given inflation!
-                </p>
-              </>
-            )}
-          </div>
-          <div className="bubble bubble-bottom-left">
-            <Button
-              variant="outline-primary"
-              id="response"
-              onClick={() => setShowStep4(true)}
-            >
-              Can you give me an example?
-            </Button>
-            <Button
-              variant="outline-primary"
-              id="response"
-              onClick={() => {
-                const currentProgress = { ...progress };
-                currentProgress["section4"] = [4, 4];
-                setProgress(currentProgress);
-                navigate("#section5");
-              }}
-            >
-              Right on. I’m familiar with the concept of inflation (skip
-              inflation section)
-            </Button>
-          </div>
-        </StyledWrap>
-      </BackgroundImage>
+      <>
+        <BackgroundImage fluid={data.section4_1.childImageSharp.fluid}>
+          <StyledWrap>
+            <div id="text">
+              <p>
+                Let’s say I also got $10,000 prize money, and I want to store it
+                in my personal vault (as shown on the right) instead of a bank
+                that offers me 10% annual interest.
+              </p>
+              <p>Do you think that is a good idea?</p>
+            </div>
+            <div className="bubble bubble-bottom-left">
+              {choices.map((e, index) => (
+                <Button
+                  variant="outline-primary"
+                  id="response"
+                  key={index}
+                  onClick={() => {
+                    console.log("index", index);
+                    setStep3Choice(index + 1);
+                  }}
+                >
+                  {e}
+                </Button>
+              ))}
+            </div>
+          </StyledWrap>
+        </BackgroundImage>
+        {step3Choice && (
+          <BackgroundImage fluid={data.section4_1.childImageSharp.fluid}>
+            <StyledWrap>
+              <div id="text-small">
+                {step3Choice == 1 ? (
+                  <>
+                    <p>
+                      Awesome! Then you know know where I’m going with
+                      this--inflation!
+                    </p>
+                    <p>
+                      Inflation refers to a general increase in prices and fall
+                      in the purchasing value of money. This means that the
+                      $10,000 I put away in my safe will allow me to buy less
+                      goods in the future given inflation!
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <p>
+                      Although it’s a very safe, it may NOT be the best option
+                      for me because my $10,000 cash will depreciate in value
+                      due to inflation.
+                    </p>
+                    <p>
+                      Inflation refers to a general increase in prices and fall
+                      in the purchasing value of money. This means that the
+                      $10,000 I put away in my safe will allow me to buy less
+                      goods in the future given inflation!
+                    </p>
+                  </>
+                )}
+              </div>
+              <div className="bubble bubble-bottom-left">
+                <Button
+                  variant="outline-primary"
+                  id="response"
+                  onClick={() => setShowStep4(true)}
+                >
+                  Can you give me an example?
+                </Button>
+                <Button
+                  variant="outline-primary"
+                  id="response"
+                  onClick={() => {
+                    const currentProgress = { ...progress };
+                    currentProgress["section4"] = [4, 4];
+                    setProgress(currentProgress);
+                    changeSection("#section5");
+                  }}
+                >
+                  Right on. I’m familiar with the concept of inflation (skip
+                  inflation section)
+                </Button>
+              </div>
+            </StyledWrap>
+          </BackgroundImage>
+        )}
+      </>
     );
   };
 
@@ -227,7 +229,6 @@ const Unit1Section4 = ({ progress, setProgress }) => {
     <>
       <Step1 />
       {progress["section4"][0] >= 1 && <Step2 />}
-      {progress["section4"][0] >= 2 && <Step3 />}
       {showStep4 && <Step4 />}
     </>
   );

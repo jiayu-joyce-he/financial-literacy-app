@@ -63,7 +63,6 @@ const UnitContent = ({
 
   const handleSelect = key => {
     setTabKey(key);
-    console.log("key", key);
     setCurrentSection(key.split("#")[1]);
   };
 
@@ -120,7 +119,7 @@ const UnitContent = ({
           <Col sm={3} id="leftbar-wrapper">
             <div className="sidebar-heading">{unitTitle} </div>
             <ListGroup>
-              <ListGroup.Item onSelect={handleSelect} href="#learning_goals">
+              <ListGroup.Item href="#learning_goals" onSelect={handleSelect}>
                 Learning Goals
               </ListGroup.Item>
               {content.map(e => (
@@ -148,6 +147,7 @@ const UnitContent = ({
                     progress={progress}
                     setProgress={setProgress}
                     currentStep={currentStep}
+                    changeSection={handleSelect}
                   />
                 </Tab.Pane>
               ))}

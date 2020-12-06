@@ -14,6 +14,7 @@ const SectionContent = ({
   currentSection,
   progress,
   setProgress,
+  changeSection,
 }) => {
   const CurrentSectionContent = () => {
     if (currentUnit == 1) {
@@ -27,7 +28,11 @@ const SectionContent = ({
           return <Unit1Section3 progress={progress} />;
         case "4":
           return (
-            <Unit1Section4 progress={progress} setProgress={setProgress} />
+            <Unit1Section4
+              progress={progress}
+              setProgress={setProgress}
+              changeSection={changeSection}
+            />
           );
         case "5":
           return <Summaries currentUnit={currentUnit} />;
@@ -36,7 +41,11 @@ const SectionContent = ({
       switch (currentSection.slice(-1)) {
         case "1":
           return (
-            <Unit2Section1 progress={progress} setProgress={setProgress} />
+            <Unit2Section1
+              progress={progress}
+              setProgress={setProgress}
+              changeSection={changeSection}
+            />
           );
         case "2":
           return <Unit2Section2 progress={progress} />;
