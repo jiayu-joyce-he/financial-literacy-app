@@ -31,7 +31,7 @@ const UnitContent = ({
       setCurrentStep(progress["learning_goals"][0]);
       setTotalSteps(progress["learning_goals"][1]);
     }
-  }, [currentSection]);
+  }, [currentSection, progress]);
 
   useEffect(() => {
     setProgressShown(
@@ -43,7 +43,7 @@ const UnitContent = ({
       currentProgress[currentSection] = [currentStep, totalSteps];
       setProgress(currentProgress);
     }
-  }, [currentStep]);
+  }, [currentStep, totalSteps]);
 
   const SectionProgress = () => {
     return (

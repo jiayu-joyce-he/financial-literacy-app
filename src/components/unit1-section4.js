@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import styled from "styled-components";
 import BackgroundImage from "gatsby-background-image";
-import { Button } from "react-bootstrap";
+import Img from "gatsby-image";
+import { Button, Row, Col, Alert } from "react-bootstrap";
 
 const StyledWrap = styled.div`
   min-height: 500px;
@@ -49,7 +50,7 @@ const StyledWrap = styled.div`
     bottom: -24px;
   }
 
-  #response {
+  .response {
     font-size: 1.25rem;
     color: #434343;
     border-color: #434343;
@@ -72,6 +73,47 @@ const StyledWrap = styled.div`
       color: #434343;
     }
   }
+
+  #inflation {
+    margin-right: -60%;
+    padding-left: 30%;
+    margin-top: 3rem;
+    font-size: 1.25rem;
+
+    img {
+      width: 100%;
+      min-width: 200px;
+      padding-top: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .no-top-margin {
+    margin-top: 1rem;
+  }
+
+  .alert {
+    width: 70%;
+    margin-top: 1rem;
+    min-width: 300px;
+    margin-right: 0;
+  }
+
+  #multiple-choice {
+    min-width: 200px;
+    margin-left: 40%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+
+    p {
+      color: white;
+      font-size: 2rem;
+      font-variant: petite-caps;
+      margin: auto;
+    }
+  }
 `;
 
 const Unit1Section4 = ({ progress, setProgress, changeSection }) => {
@@ -79,6 +121,20 @@ const Unit1Section4 = ({ progress, setProgress, changeSection }) => {
     graphql`
       query {
         section4_1: file(relativePath: { eq: "unit1section4_1.png" }) {
+          childImageSharp {
+            fluid(quality: 90, maxWidth: 1920) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
+        section4_2: file(relativePath: { eq: "unit1section4_2.png" }) {
+          childImageSharp {
+            fluid(quality: 90, maxWidth: 1920) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
+        section4_3: file(relativePath: { eq: "unit2section1_3.png" }) {
           childImageSharp {
             fluid(quality: 90, maxWidth: 1920) {
               ...GatsbyImageSharpFluid_withWebp
@@ -98,6 +154,7 @@ const Unit1Section4 = ({ progress, setProgress, changeSection }) => {
 
   const [step3Choice, setStep3Choice] = useState(null);
   const [showStep4, setShowStep4] = useState(false);
+  const [step4Choice, setStep4Choice] = useState(null);
 
   const Step1 = () => {
     return (
@@ -137,7 +194,7 @@ const Unit1Section4 = ({ progress, setProgress, changeSection }) => {
               {choices.map((e, index) => (
                 <Button
                   variant="outline-primary"
-                  id="response"
+                  className="response"
                   key={index}
                   onClick={() => {
                     console.log("index", index);
@@ -154,7 +211,7 @@ const Unit1Section4 = ({ progress, setProgress, changeSection }) => {
           <BackgroundImage fluid={data.section4_1.childImageSharp.fluid}>
             <StyledWrap>
               <div id="text-small">
-                {step3Choice == 1 ? (
+                {step3Choice === 1 ? (
                   <>
                     <p>
                       Awesome! Then you know know where I’m going with
@@ -186,14 +243,14 @@ const Unit1Section4 = ({ progress, setProgress, changeSection }) => {
               <div className="bubble bubble-bottom-left">
                 <Button
                   variant="outline-primary"
-                  id="response"
+                  className="response"
                   onClick={() => setShowStep4(true)}
                 >
                   Can you give me an example?
                 </Button>
                 <Button
                   variant="outline-primary"
-                  id="response"
+                  className="response"
                   onClick={() => {
                     const currentProgress = { ...progress };
                     currentProgress["section4"] = [4, 4];
@@ -213,13 +270,59 @@ const Unit1Section4 = ({ progress, setProgress, changeSection }) => {
   };
 
   const Step4 = () => {
+    const choices = [
+      {
+        option: "Money",
+        feedback:
+          "Correct! Inflation changes the value of the money over time, the coffee did not change. This might be because of demand for a product, production costs, or built-in costs like wages. So money that you have now will be worth less in the future.",
+        isCorrect: true,
+      },
+      {
+        option: "Coffee",
+        feedback:
+          "If you take a closer look, you will see that the coffee isn’t changing but the money cost to buy the same coffee increased over time. Inflation changes the value of the money over time, the coffee did not change. This might be because of demand for a product, production costs, or built-in costs like wages. So money that you have now will be worth less in the future.",
+        isCorrect: false,
+      },
+    ];
     return (
-      <BackgroundImage fluid={data.section4_1.childImageSharp.fluid}>
+      <BackgroundImage fluid={data.section4_3.childImageSharp.fluid}>
         <StyledWrap>
-          <div id="text">
-            <p>step 4</p>
+          <div id="inflation">
+            <p>I have a good example here! Take a look at the image below.</p>
+            <p> What is changing: the coffee or the money?</p>
+            <Img fluid={data.section4_2.childImageSharp.fluid} />
+
+            <Row>
+              <Col xs={1}>
+                <div id="multiple-choice">
+                  {choices.map((e, index) => (
+                    <Button
+                      variant="outline-primary"
+                      size="lg"
+                      className="response"
+                      key={index}
+                      onClick={() => {
+                        setStep4Choice(index);
+                      }}
+                    >
+                      {e.option}
+                    </Button>
+                  ))}
+                </div>
+              </Col>
+              <Col>
+                {typeof step4Choice === "number" && (
+                  <Alert
+                    variant={
+                      choices[step4Choice].isCorrect ? "success" : "danger"
+                    }
+                  >
+                    {choices[step4Choice].feedback}
+                  </Alert>
+                )}
+              </Col>
+            </Row>
           </div>
-          <div className="bubble bubble-bottom-left">okay…?</div>
         </StyledWrap>
       </BackgroundImage>
     );
