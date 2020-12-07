@@ -8,6 +8,14 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-plugin-hotjar`,
+      options: {
+        includeInDevelopment: true, // optional parameter to include script in development
+        id: 2142217,
+        sv: 6,
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
