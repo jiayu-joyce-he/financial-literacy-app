@@ -2,6 +2,7 @@ import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import styled from "styled-components";
 import BackgroundImage from "gatsby-background-image";
+import Img from "gatsby-image";
 
 const StyledInnerWrapper = styled.div`
   min-height: 500px;
@@ -13,6 +14,11 @@ const StyledInnerWrapper = styled.div`
   div {
     margin: auto;
   }
+`;
+
+const StyledImageWrapper = styled.div`
+  min-height: 500px;
+  margin: auto;
 `;
 
 const Summaries = ({ currentUnit }) => {
@@ -38,9 +44,12 @@ const Summaries = ({ currentUnit }) => {
   );
 
   return (
-    <BackgroundImage fluid={data["unit" + currentUnit].childImageSharp.fluid}>
-      <StyledInnerWrapper></StyledInnerWrapper>
-    </BackgroundImage>
+    // <BackgroundImage fluid={data["unit" + currentUnit].childImageSharp.fluid}>
+    //   <StyledInnerWrapper></StyledInnerWrapper>
+    // </BackgroundImage>
+    <StyledImageWrapper>
+      <Img fluid={data["unit" + currentUnit].childImageSharp.fluid} />
+    </StyledImageWrapper>
   );
 };
 

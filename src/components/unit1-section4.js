@@ -5,6 +5,45 @@ import BackgroundImage from "gatsby-background-image";
 import Img from "gatsby-image";
 import { Button, Row, Col, Alert } from "react-bootstrap";
 
+const StyledInstructionalContent = styled.div`
+  margin-top: -20rem;
+  margin-left: 5rem;
+  width: 70%;
+
+  p {
+    font-size: 1.25rem;
+    margin-top: 1rem;
+  }
+
+  .row {
+    margin-top: 1rem;
+  }
+
+  .response {
+    font-size: 1.25rem;
+    color: #434343;
+    border-color: #434343;
+    margin: 0.25rem;
+    z-index: 1;
+
+    :active {
+      background-color: #ffe599;
+      border-color: #434343;
+      color: #434343;
+    }
+    :hover {
+      background-color: #ffe599;
+      border-color: #434343;
+      color: #434343;
+    }
+    :focus {
+      background-color: #ffe599;
+      border-color: #434343;
+      color: #434343;
+    }
+  }
+`;
+
 const StyledWrap = styled.div`
   min-height: 500px;
   width: 40%;
@@ -13,6 +52,7 @@ const StyledWrap = styled.div`
   align-items: center;
   margin-left: 5%;
   font-size: 1.25rem;
+  margin-top: 3rem;
 
   #text {
     margin-top: 10rem;
@@ -77,15 +117,7 @@ const StyledWrap = styled.div`
   #inflation {
     margin-right: -60%;
     padding-left: 30%;
-    margin-top: 3rem;
-    font-size: 1.25rem;
-
-    img {
-      width: 100%;
-      min-width: 200px;
-      padding-top: 0.5rem;
-      margin-bottom: 0.5rem;
-    }
+    margin-top: 1rem;
   }
 
   .no-top-margin {
@@ -97,22 +129,6 @@ const StyledWrap = styled.div`
     margin-top: 1rem;
     min-width: 300px;
     margin-right: 0;
-  }
-
-  #multiple-choice {
-    min-width: 200px;
-    margin-left: 40%;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    text-align: start;
-
-    p {
-      color: white;
-      font-size: 2rem;
-      font-variant: petite-caps;
-      margin: auto;
-    }
   }
 `;
 
@@ -285,46 +301,50 @@ const Unit1Section4 = ({ progress, setProgress, changeSection }) => {
       },
     ];
     return (
-      <BackgroundImage fluid={data.section4_3.childImageSharp.fluid}>
-        <StyledWrap>
-          <div id="inflation">
-            <p>I have a good example here! Take a look at the image below.</p>
-            <p> What is changing: the coffee or the money?</p>
-            <Img fluid={data.section4_2.childImageSharp.fluid} />
+      <>
+        <BackgroundImage fluid={data.section4_3.childImageSharp.fluid}>
+          <StyledWrap>
+            <div id="inflation">
+              <p>I have a good example here! Take a look at the image below.</p>
+              <p> What is changing: the coffee or the money?</p>
+            </div>
+          </StyledWrap>
+        </BackgroundImage>
+        <StyledInstructionalContent>
+          <Img fluid={data.section4_2.childImageSharp.fluid} />
 
-            <Row>
-              <Col xs={1}>
-                <div id="multiple-choice">
-                  {choices.map((e, index) => (
-                    <Button
-                      variant="outline-primary"
-                      size="lg"
-                      className="response"
-                      key={index}
-                      onClick={() => {
-                        setStep4Choice(index);
-                      }}
-                    >
-                      {e.option}
-                    </Button>
-                  ))}
-                </div>
-              </Col>
-              <Col>
-                {typeof step4Choice === "number" && (
-                  <Alert
-                    variant={
-                      choices[step4Choice].isCorrect ? "success" : "danger"
-                    }
+          <Row>
+            <Col xs={3}>
+              <div id="multiple-choice">
+                {choices.map((e, index) => (
+                  <Button
+                    variant="outline-primary"
+                    size="lg"
+                    className="response"
+                    key={index}
+                    onClick={() => {
+                      setStep4Choice(index);
+                    }}
                   >
-                    {choices[step4Choice].feedback}
-                  </Alert>
-                )}
-              </Col>
-            </Row>
-          </div>
-        </StyledWrap>
-      </BackgroundImage>
+                    {e.option}
+                  </Button>
+                ))}
+              </div>
+            </Col>
+            <Col xs={8}>
+              {typeof step4Choice === "number" && (
+                <Alert
+                  variant={
+                    choices[step4Choice].isCorrect ? "success" : "danger"
+                  }
+                >
+                  {choices[step4Choice].feedback}
+                </Alert>
+              )}
+            </Col>
+          </Row>
+        </StyledInstructionalContent>
+      </>
     );
   };
 
