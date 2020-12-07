@@ -21,6 +21,11 @@ export const StyledSideBar = styled.div`
       text-align: center;
       font-size: 1.2rem;
     }
+    .active {
+      background-color: #ffe599;
+      border-color: #ffe599;
+      color: #434343;
+    }
   }
 `;
 

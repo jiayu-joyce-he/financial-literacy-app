@@ -52,7 +52,7 @@ const Unit2 = () => {
       <SEO title="Home" />
       <UnitContent
         unitId={2}
-        unitTitle="Unit 2"
+        unitTitle="Unit 2: Introduction to interest"
         learningGoals={learningGoals}
         content={content}
         progress={progress}

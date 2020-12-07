@@ -36,6 +36,16 @@ const Header = ({ siteTitle }) => (
             Unit 2
           </Nav.Link>
         </NavItem>
+        <NavItem href="/unit2.5">
+          <Nav.Link as={Link} activeClassName="active" to="/unit2.5">
+            (Optional Unit)
+          </Nav.Link>
+        </NavItem>
+        <NavItem href="/unit3">
+          <Nav.Link as={Link} activeClassName="active" to="/unit3">
+            Unit 3
+          </Nav.Link>
+        </NavItem>
       </Nav>
       {/* <Nav className="ml-auto">
         <Button variant="success" onClick={() => alert("Sign Up")}>

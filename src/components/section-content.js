@@ -8,6 +8,8 @@ import Unit2Section1 from "./unit2-section1";
 import Unit2Section2 from "./unit2-section2";
 import Unit2Section3 from "./unit2-section3";
 import Unit2Section4 from "./unit2-section4";
+import Unit3Section1 from "./unit3-section1";
+import Unit3Section2 from "./unit3-section2";
 
 const SectionContent = ({
   currentUnit,
@@ -55,6 +57,25 @@ const SectionContent = ({
           return <Summaries currentUnit={currentUnit} />;
         case "5":
           return <Unit2Section4 />;
+      }
+    } else if (currentUnit == 3) {
+      switch (currentSection.slice(-1)) {
+        case "1":
+          return (
+            <Unit3Section1
+              progress={progress}
+              setProgress={setProgress}
+              changeSection={changeSection}
+            />
+          );
+        case "2":
+          return <Unit3Section2 progress={progress} />;
+        // case "3":
+        //   return <Unit2Section3 progress={progress} />;
+        // case "4":
+        //   return <Summaries currentUnit={currentUnit} />;
+        // case "5":
+        //   return <Unit2Section4 />;
       }
     }
   };

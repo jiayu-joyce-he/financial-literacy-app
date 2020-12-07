@@ -97,9 +97,6 @@ const UnitContent = ({
                 }`
               )
             }
-            // href={`#${
-            //   sectionSequence[sectionSequence.indexOf(currentSection) + 1]
-            // }`}
           >
             the next section
           </Alert.Link>

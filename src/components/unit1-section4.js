@@ -5,7 +5,6 @@ import BackgroundImage from "gatsby-background-image";
 import Img from "gatsby-image";
 import {
   Button,
-  ButtonGroup,
   ToggleButton,
   ToggleButtonGroup,
   Row,
