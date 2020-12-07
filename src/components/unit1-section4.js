@@ -3,7 +3,15 @@ import { graphql, useStaticQuery } from "gatsby";
 import styled from "styled-components";
 import BackgroundImage from "gatsby-background-image";
 import Img from "gatsby-image";
-import { Button, Row, Col, Alert } from "react-bootstrap";
+import {
+  Button,
+  ButtonGroup,
+  ToggleButton,
+  ToggleButtonGroup,
+  Row,
+  Col,
+  Alert,
+} from "react-bootstrap";
 
 const StyledInstructionalContent = styled.div`
   margin-top: -20rem;
@@ -25,6 +33,10 @@ const StyledInstructionalContent = styled.div`
     border-color: #434343;
     margin: 0.25rem;
     z-index: 1;
+
+    #selected {
+      background-color: #ffe599;
+    }
 
     :active {
       background-color: #ffe599;
@@ -90,6 +102,12 @@ const StyledWrap = styled.div`
     bottom: -24px;
   }
 
+  .btn.active {
+    background-color: #ffe599 !important;
+    border-color: #434343 !important;
+    color: #434343 !important;
+  }
+
   .response {
     font-size: 1.25rem;
     color: #434343;
@@ -98,16 +116,22 @@ const StyledWrap = styled.div`
     z-index: 1;
 
     :active {
-      background-color: #ffe599;
+      background-color: #ffe599
       border-color: #434343;
       color: #434343;
     }
+    
     :hover {
       background-color: #ffe599;
       border-color: #434343;
       color: #434343;
     }
     :focus {
+      background-color: #ffe599;
+      border-color: #434343;
+      color: #434343;
+    }
+    :visited {
       background-color: #ffe599;
       border-color: #434343;
       color: #434343;
@@ -188,12 +212,19 @@ const Unit1Section4 = ({ progress, setProgress, changeSection }) => {
     );
   };
 
+  console.log("step3choice", step3Choice);
+
   const Step2 = () => {
     const choices = [
-      "It’s a great idea!",
-      "It may not be the best idea...",
-      "I don’t know.",
+      { choice: "It’s a great idea!", value: 1 },
+      { choice: "It may not be the best idea...", value: 2 },
+      { choice: "I don’t know.", value: 3 },
     ];
+
+    const handleChange = (val, e) => {
+      e.preventDefault();
+      setStep3Choice(val);
+    };
     return (
       <>
         <BackgroundImage fluid={data.section4_1.childImageSharp.fluid}>
@@ -207,19 +238,29 @@ const Unit1Section4 = ({ progress, setProgress, changeSection }) => {
               <p>Do you think that is a good idea?</p>
             </div>
             <div className="bubble bubble-bottom-left">
-              {choices.map((e, index) => (
-                <Button
-                  variant="outline-primary"
-                  className="response"
-                  key={index}
-                  onClick={() => {
-                    console.log("index", index);
-                    setStep3Choice(index + 1);
-                  }}
-                >
-                  {e}
-                </Button>
-              ))}
+              <ToggleButtonGroup
+                type="radio"
+                name="options"
+                vertical
+                onChange={handleChange}
+              >
+                {choices.map((e, index) => {
+                  return (
+                    <ToggleButton
+                      value={e.value}
+                      key={index}
+                      variant="outline-primary"
+                      className="response"
+                      active={index == step3Choice}
+                    >
+                      {e.choice}
+                    </ToggleButton>
+                  );
+                })}
+                {/* <ToggleButton value={1}>Radio 1 (pre-checked)</ToggleButton>
+                <ToggleButton value={2}>Radio 2</ToggleButton>
+                <ToggleButton value={3}>Radio 3</ToggleButton> */}
+              </ToggleButtonGroup>
             </div>
           </StyledWrap>
         </BackgroundImage>
@@ -353,6 +394,7 @@ const Unit1Section4 = ({ progress, setProgress, changeSection }) => {
       <Step1 />
       {progress["section4"][0] >= 1 && <Step2 />}
       {showStep4 && <Step4 />}
+      {/* {progress["section4"][0] >= 1 && <Step5 />} */}
     </>
   );
 };

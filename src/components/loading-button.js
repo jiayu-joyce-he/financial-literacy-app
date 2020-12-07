@@ -28,6 +28,7 @@ const LoadingButton = ({ setCurrentStep, currentStep, totalSteps }) => {
         variant="primary"
         disabled={isLoading}
         onClick={!isLoading ? handleClick : null}
+        id="continue-button"
       >
         {isLoading ? "Loading…" : "Continue"}
       </Button>
