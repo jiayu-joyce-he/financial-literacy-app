@@ -7,8 +7,8 @@ const Unit3 = () => {
   // Set initial progress for all the sections in this unit
   const initialProgress = {
     section1: [0, 3],
-    section2: [0, 4],
-    section3: [0, 3],
+    section2: [0, 2],
+    section3: [0, 7],
     section4: [0, 4],
     section5: [1, 1],
   };
@@ -37,13 +37,13 @@ const Unit3 = () => {
       content: "content 1",
     },
     {
-      sectionName: "Section 3",
+      sectionName: "Different Investment Tools",
       sectionId: "section3",
       totalSteps: 3,
       content: "content 1",
     },
     {
-      sectionName: "Section 4",
+      sectionName: "Test Yourself",
       sectionId: "section4",
       totalSteps: 4,
       content: "content 1",

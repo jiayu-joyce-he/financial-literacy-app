@@ -261,7 +261,6 @@ const Unit1Section2 = ({ progress }) => {
                     className="choices"
                     key={index}
                     onClick={() => {
-                      console.log("index", index);
                       setChoice(index);
                     }}
                   >

@@ -9,6 +9,7 @@ import FigureCaption from "react-bootstrap/esm/FigureCaption";
 const StyledInstructionalContent = styled.div`
   width: 80%;
   margin: auto;
+  margin-top: 2rem;
 
   table {
     margin: 2rem auto;
@@ -93,46 +94,10 @@ const StyledInstructionalContent = styled.div`
   }
 `;
 
-const StyledWrap = styled.div`
-  min-height: 500px;
-  width: 45%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-left: 3%;
-  margin-top: 3rem;
-
-  .input-group {
-    margin-top: 2rem;
-  }
-
-  #text {
-    margin-top: 7.5rem;
-  }
-
-  #text-small {
-    margin-top: 8.5rem;
-  }
-`;
-
-const Unit3Section1 = ({ progress, setProgress, changeSection }) => {
+const Unit3Section1 = ({ progress }) => {
   const data = useStaticQuery(
     graphql`
       query {
-        unit1section4_1: file(relativePath: { eq: "unit1section4_1.png" }) {
-          childImageSharp {
-            fluid(quality: 90, maxWidth: 1920) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-        }
-        section1_1: file(relativePath: { eq: "unit3section1_1.png" }) {
-          childImageSharp {
-            fluid(quality: 90, maxWidth: 1920) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-        }
         section1_2: file(relativePath: { eq: "unit3section1_2.png" }) {
           childImageSharp {
             fluid(quality: 90, maxWidth: 1920) {
@@ -140,14 +105,7 @@ const Unit3Section1 = ({ progress, setProgress, changeSection }) => {
             }
           }
         }
-        section1_3: file(relativePath: { eq: "unit3section1_3.png" }) {
-          childImageSharp {
-            fluid(quality: 90, maxWidth: 1920) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-        }
-        section4_3: file(relativePath: { eq: "unit2section1_3.png" }) {
+        section1_3: file(relativePath: { eq: "unit3section1_1.jpg" }) {
           childImageSharp {
             fluid(quality: 90, maxWidth: 1920) {
               ...GatsbyImageSharpFluid_withWebp
@@ -189,25 +147,25 @@ const Unit3Section1 = ({ progress, setProgress, changeSection }) => {
       <>
         <StyledInstructionalContent>
           <div className="bubble bubble-bottom-left">
-            The factor was time! Long-term investments help lower risk because
-            markets follow cycles of growth and decline.{" "}
+            The factor was <strong>time</strong>! Long-term investments help
+            lower risk because markets follow cycles of growth and decline.{" "}
             <strong>
               Starting early reduces the risk of getting caught up in market
-              fluctuations.
+              fluctuations.{" "}
             </strong>
+            If you look at this graph below, it shows that{" "}
+            <strong>
+              it may take years for a market to recover from crashes.{" "}
+            </strong>
+            That said, if are 30 years old when the market crashes, you are more
+            likely to make your money back than if you see the crashes when
+            you're 60.
           </div>
           <Img fluid={data.section1_3.childImageSharp.fluid} />
           <FigureCaption>
             Source:
             https://fourpillarfreedom.com/heres-how-long-the-stock-market-has-historically-taken-to-recover-from-drops/
           </FigureCaption>
-          <div className="bubble bubble-bottom-left">
-            This graph shows
-            <strong>
-              Overall, starting early reduces the risk of getting caught up in
-              market fluctuations.
-            </strong>
-          </div>
         </StyledInstructionalContent>
       </>
     );
@@ -216,7 +174,7 @@ const Unit3Section1 = ({ progress, setProgress, changeSection }) => {
   return (
     <>
       <Step1 />
-      {progress["section1"][0] >= 1 && <Step2 />}
+      {progress["section2"][0] >= 1 && <Step2 />}
       {/* {progress["section1"][0] >= 2 && <Step3 />}
       {progress["section1"][0] >= 3 && <Step4 />}
       {progress["section1"][0] >= 4 && <Step5 />}

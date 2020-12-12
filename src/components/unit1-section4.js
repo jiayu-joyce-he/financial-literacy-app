@@ -355,7 +355,7 @@ const Unit1Section4 = ({ progress, setProgress, changeSection }) => {
 
           <Row>
             <Col xs={3}>
-              <div id="multiple-choice">
+              <div>
                 {choices.map((e, index) => (
                   <Button
                     variant="outline-primary"

@@ -10,6 +10,8 @@ import Unit2Section3 from "./unit2-section3";
 import Unit2Section4 from "./unit2-section4";
 import Unit3Section1 from "./unit3-section1";
 import Unit3Section2 from "./unit3-section2";
+import Unit3Section3 from "./unit3-section3";
+import Unit3Section4 from "./unit3-section4";
 
 const SectionContent = ({
   currentUnit,
@@ -70,12 +72,12 @@ const SectionContent = ({
           );
         case "2":
           return <Unit3Section2 progress={progress} />;
-        // case "3":
-        //   return <Unit2Section3 progress={progress} />;
-        // case "4":
-        //   return <Summaries currentUnit={currentUnit} />;
+        case "3":
+          return <Unit3Section3 progress={progress} />;
+        case "4":
+          return <Unit3Section4 progress={progress} />;
         // case "5":
-        //   return <Unit2Section4 />;
+        //   return <Summaries currentUnit={currentUnit} />;
       }
     }
   };

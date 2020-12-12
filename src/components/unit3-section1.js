@@ -107,7 +107,8 @@ const StyledWrap = styled.div`
   }
 
   #text {
-    margin-top: 7.5rem;
+    padding: 1rem;
+    margin-top: 6rem;
   }
 
   #text-small {
