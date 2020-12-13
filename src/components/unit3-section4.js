@@ -208,7 +208,13 @@ const Unit3Section4 = ({ progress }) => {
           <p>
             Savings accounts, stocks, and bonds are liquid. Retirement accounts
             and real estate are not liquid. Investment accounts can be both.
-          </p>
+          </p>{" "}
+          <InputGroup>
+            <InputGroup.Prepend>
+              <InputGroup.Text>My thoughts:</InputGroup.Text>
+            </InputGroup.Prepend>
+            <FormControl as="textarea" aria-label="With textarea" />
+          </InputGroup>
         </div>
       </StyledInstructionalContent>
     );
