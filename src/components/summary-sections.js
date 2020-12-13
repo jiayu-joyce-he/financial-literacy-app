@@ -26,6 +26,13 @@ const Summaries = ({ currentUnit }) => {
             }
           }
         }
+        unit3: file(relativePath: { eq: "unit3summary.png" }) {
+          childImageSharp {
+            fluid(quality: 90, maxWidth: 1920) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
       }
     `
   );

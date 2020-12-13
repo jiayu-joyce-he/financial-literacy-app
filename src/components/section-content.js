@@ -76,8 +76,8 @@ const SectionContent = ({
           return <Unit3Section3 progress={progress} />;
         case "4":
           return <Unit3Section4 progress={progress} />;
-        // case "5":
-        //   return <Summaries currentUnit={currentUnit} />;
+        case "5":
+          return <Summaries currentUnit={currentUnit} />;
       }
     }
   };

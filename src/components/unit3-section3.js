@@ -467,7 +467,7 @@ const Unit3Section1 = ({ progress, setProgress, changeSection }) => {
             <div className="bubble bubble-bottom-left">
               <p>
                 Before we show you anything, why don’t you give it a try
-                matching the different kinds of investments with their relative
+                matching the different kinds of assets with their relative
                 amount of risk, using your intuitions?{" "}
               </p>
               <p>
@@ -534,8 +534,8 @@ const Unit3Section1 = ({ progress, setProgress, changeSection }) => {
           <StyledInstructionalContent>
             <div className="bubble bubble-bottom-left">
               <p>
-                Let's try this again, using your intuition to match these
-                investment tools into these categories!
+                Let's try this again, using your intuition to match these kinds
+                of assets into these categories!
               </p>
               <p>We will go over them next!</p>
             </div>
@@ -674,11 +674,11 @@ const Unit3Section1 = ({ progress, setProgress, changeSection }) => {
             <div className="bubble bubble-bottom-left">
               <p>
                 After watching those videos, do you now have a better
-                understanding of these different investment tools?
+                understanding of these different kinds of assets?
               </p>
               <p>
                 Here is my answer to the first question about risk of these
-                investment tools, how do they compare to yours?
+                kinds of assets, how do they compare to yours?
               </p>
             </div>
             <div> {DragNDrop(riskAnswer, "answer")}</div>
@@ -704,7 +704,7 @@ const Unit3Section1 = ({ progress, setProgress, changeSection }) => {
             <div className="bubble bubble-bottom-up">
               <p>
                 Here is my answer to second question on the liquidity of these
-                investment tools, how do they compare to yours?
+                kinds of assets, how do they compare to yours?
               </p>
             </div>
             <div> {DragNDrop(liquidityAnswer, "answer")}</div>

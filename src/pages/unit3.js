@@ -20,7 +20,7 @@ const Unit3 = () => {
     "1. Understand that risk affects short term and long term return on investment.",
     "2. Understand that long-term investment is less risky.",
     "3. Understand that liquidity affects the ability to convert an investment to cash.",
-    "4. Associate goals with different kinds of investments based on time, risk, and liquidity.",
+    "4. Associate goals with different kinds of assets based on time, risk, and liquidity.",
   ];
 
   const content = [
@@ -37,7 +37,7 @@ const Unit3 = () => {
       content: "content 1",
     },
     {
-      sectionName: "Different Investment Tools",
+      sectionName: "Different Kinds of Assets",
       sectionId: "section3",
       totalSteps: 3,
       content: "content 1",
