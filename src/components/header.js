@@ -46,6 +46,11 @@ const Header = ({ siteTitle }) => (
             Unit 3
           </Nav.Link>
         </NavItem>
+        <NavItem href="/post-quiz">
+          <Nav.Link as={Link} activeClassName="active" to="/post-quiz">
+            Post-quiz
+          </Nav.Link>
+        </NavItem>
       </Nav>
       {/* <Nav className="ml-auto">
         <Button variant="success" onClick={() => alert("Sign Up")}>
