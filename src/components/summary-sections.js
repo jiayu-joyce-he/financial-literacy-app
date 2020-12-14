@@ -5,6 +5,7 @@ import Img from "gatsby-image";
 
 const StyledImageWrapper = styled.div`
   min-height: 500px;
+  max-width: 850px;
   margin: auto;
 `;
 
@@ -33,13 +34,26 @@ const Summaries = ({ currentUnit }) => {
             }
           }
         }
+        optional_unit: file(relativePath: { eq: "optional_summary.png" }) {
+          childImageSharp {
+            fluid(quality: 90, maxWidth: 1920) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
       }
     `
   );
 
   return (
     <StyledImageWrapper>
-      <Img fluid={data["unit" + currentUnit].childImageSharp.fluid} />
+      <Img
+        fluid={
+          currentUnit == 2.5
+            ? data["optional_unit"].childImageSharp.fluid
+            : data["unit" + currentUnit].childImageSharp.fluid
+        }
+      />
     </StyledImageWrapper>
   );
 };

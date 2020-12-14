@@ -71,7 +71,14 @@ const UnitContent = ({
       return (
         <Alert variant="success">
           Creat job! Let's move on to{" "}
-          <Alert.Link onClick={() => navigate(`/unit${unitId + 1}`)}>
+          <Alert.Link
+            onClick={() => {
+              console.log("unitId", unitId);
+              unitId === 2.5
+                ? navigate(`/unit3`)
+                : navigate(`/unit${unitId + 1}`);
+            }}
+          >
             next unit
           </Alert.Link>
           !

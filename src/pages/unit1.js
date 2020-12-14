@@ -26,32 +26,22 @@ const Unit1 = () => {
     {
       sectionName: "Test Yourself",
       sectionId: "section1",
-      totalSteps: 2,
-      content: "content png path",
     },
     {
       sectionName: "Time is Money",
       sectionId: "section2",
-      totalSteps: 3,
-      content: "content 1",
     },
     {
       sectionName: "What is Interest?",
       sectionId: "section3",
-      totalSteps: 3,
-      content: "content 1",
     },
     {
       sectionName: "Inflation",
       sectionId: "section4",
-      totalSteps: 4,
-      content: "content 1",
     },
     {
       sectionName: "Summary",
       sectionId: "section5",
-      totalSteps: 1,
-      content: "content 1",
     },
   ];
 

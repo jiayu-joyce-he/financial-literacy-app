@@ -12,6 +12,10 @@ import Unit3Section1 from "./unit3-section1";
 import Unit3Section2 from "./unit3-section2";
 import Unit3Section3 from "./unit3-section3";
 import Unit3Section4 from "./unit3-section4";
+import OptionalSection1 from "./optional-section1";
+import OptionalSection2 from "./optional-section2";
+import OptionalSection3 from "./optional-section3";
+import OptionalSection4 from "./optional-section4";
 
 const SectionContent = ({
   currentUnit,
@@ -59,6 +63,19 @@ const SectionContent = ({
           return <Summaries currentUnit={currentUnit} />;
         case "5":
           return <Unit2Section4 />;
+      }
+    } else if (currentUnit == 2.5) {
+      switch (currentSection.slice(-1)) {
+        case "1":
+          return <OptionalSection1 progress={progress} />;
+        case "2":
+          return <OptionalSection2 progress={progress} />;
+        case "3":
+          return <OptionalSection3 progress={progress} />;
+        case "4":
+          return <OptionalSection4 progress={progress} />;
+        case "5":
+          return <Summaries currentUnit={currentUnit} />;
       }
     } else if (currentUnit == 3) {
       switch (currentSection.slice(-1)) {

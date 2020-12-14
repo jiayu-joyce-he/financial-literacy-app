@@ -6,7 +6,7 @@ import SEO from "../components/seo";
 const OptionalUnit = () => {
   // Set initial progress for all the sections in this unit
   const initialProgress = {
-    section1: [0, 2],
+    section1: [0, 3],
     section2: [0, 4],
     section3: [0, 3],
     section4: [0, 4],
@@ -17,41 +17,32 @@ const OptionalUnit = () => {
 
   // Set learning goals for this unit
   const learningGoals = [
-    "1. Understand that interest is a percent of money that is borrowed or invested. ",
-    "2. Understand that time affects the monetary value of money invested due to interest and inflation.",
-    "3. Understand that inflation decreases the intrinsic value of cash over time.",
+    "1. Understand that simple interest is calculated based only on principal balance.",
+    "2. Understand that compound interest is calculated based on the principal and interest accrued over time.",
+    "3. Perform simple interest problems using the simple interest equation.",
+    "4. Perform compound interest problems using the compound interest equation.",
   ];
 
   const content = [
     {
-      sectionName: "Test Yourself",
+      sectionName: "Calculating Simple Interest",
       sectionId: "section1",
-      totalSteps: 2,
-      content: "content png path",
     },
     {
-      sectionName: "Time is Money",
+      sectionName: "Calculating Compound Interest",
       sectionId: "section2",
-      totalSteps: 3,
-      content: "content 1",
     },
     {
-      sectionName: "What is Interest?",
+      sectionName: "Simple Interest Practice",
       sectionId: "section3",
-      totalSteps: 3,
-      content: "content 1",
     },
     {
-      sectionName: "Inflation",
+      sectionName: "Compound Interest Practice",
       sectionId: "section4",
-      totalSteps: 4,
-      content: "content 1",
     },
     {
       sectionName: "Summary",
       sectionId: "section5",
-      totalSteps: 1,
-      content: "content 1",
     },
   ];
 
@@ -59,8 +50,8 @@ const OptionalUnit = () => {
     <Layout>
       <SEO title="Home" />
       <UnitContent
-        unitId={1}
-        unitTitle="Unit 1: What is the time value of money?"
+        unitId={2.5}
+        unitTitle="Optional Unit: How to calculate interest?"
         learningGoals={learningGoals}
         content={content}
         progress={progress}

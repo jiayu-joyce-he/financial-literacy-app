@@ -48,17 +48,6 @@ const Layout = ({ children }) => {
       <main>
         {isUnit ? (
           <>
-            {/* <Container fluid>
-              <Row>
-                <Col xs={3} id="sidebar-wrapper">
-                  <UnitContent />
-                </Col>
-                <Col xs={9} id="page-content-wrapper">
-                  <UnitProgress />
-                  {children}
-                </Col>
-              </Row>
-            </Container> */}
             <Container fluid>{children}</Container>
           </>
         ) : (
