@@ -57,10 +57,10 @@ const Overview = () => {
             </Row>
             <Row>
               <Col md={{ span: 3, offset: 5 }}>
-                <UnitButton button="3" />
+                <UnitButton button="2.5" />
               </Col>
               <Col md={{ span: 3 }}>
-                <UnitButton button="4" />
+                <UnitButton button="3" />
               </Col>
             </Row>
           </div>

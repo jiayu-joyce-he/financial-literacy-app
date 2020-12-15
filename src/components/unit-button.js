@@ -49,10 +49,10 @@ const UnitButton = ({ button }) => {
     case "2":
       image = unit2.childImageSharp;
       break;
-    case "3":
+    case "2.5":
       image = unit3.childImageSharp;
       break;
-    case "4":
+    case "3":
       image = unit4.childImageSharp;
       break;
     default:
