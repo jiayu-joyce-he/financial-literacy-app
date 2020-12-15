@@ -18,6 +18,7 @@ const StyledInnerWrapper = styled.div`
   align-items: left;
   p {
     font-size: 24px;
+    text-align: center;
   }
 `;
 
